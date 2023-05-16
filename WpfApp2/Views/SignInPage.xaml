@@ -8,15 +8,17 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SignInPage">
 
-    <Grid Background="White">
+    <Grid Background="#242424">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
-            <TextBlock Text="Логин" FontSize="16"/>
+            <TextBlock Foreground="White" Text="Логин" FontSize="16"/>
             <TextBox Name="TxbMail" FontSize="16"/>
-            <TextBlock Text="Пароль" FontSize="16"/>
+            <TextBlock Foreground="White" Text="Пароль" FontSize="16"/>
             <TextBox Name="TxbPassword" FontSize="16"/>
 
-            <Button Height="20" Margin="5" Content="Войти" Click="BtnSignIn_Click" FontSize="13"/>
-            <Button Height="20" Margin="5" Content="Зарегистрироваться" Click="BtnRegister_Click" FontSize="13"/>
+            <Button Height="20" Margin="5" Content="Войти" Click="BtnSignIn_Click" FontSize="13"
+                    Background="Black" Foreground="White" BorderBrush="Azure" BorderThickness="1px"/>
+            <Button Height="20" Margin="5" Content="Зарегистрироваться" Click="BtnRegister_Click" FontSize="13"
+                    Background="Black" Foreground="White" BorderBrush="MediumPurple" BorderThickness="1px"/>
         </StackPanel>
     </Grid>
 </Page>

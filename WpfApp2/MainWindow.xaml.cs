@@ -114,7 +114,7 @@ namespace WpfApp2
 
         private void OpenPersonalCabinet(object sender, RoutedEventArgs e)
         {
-
+            AppData.MainFrame.Navigate(new PersonalCabinetPage());
         }
     }
 }

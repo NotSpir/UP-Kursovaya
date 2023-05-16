@@ -10,13 +10,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto" ></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid Background="#242424">
         <StackPanel HorizontalAlignment="Left">
-            <TextBlock Text="Введите название для поиска:" Width="175" TextAlignment="Right"></TextBlock>
-            <TextBox Width="225" Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"></TextBox>
-            <TextBlock Text="Выберите тип:" Width="175" TextAlignment="Right"></TextBlock>
+
+                <TextBlock Text="Введите название для поиска:" Width="175" TextAlignment="Right" Foreground="White" ></TextBlock>
+            <TextBox Width="225" Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" ></TextBox>
+                <TextBlock Text="Выберите тип:" Width="175" TextAlignment="Right" Foreground="White"></TextBlock>
             <ComboBox Width="225" Name="ComboType" DisplayMemberPath="DisciplineName" SelectionChanged="ComboType_SelectionChanged">
                 <ComboBox.Background>
                     <LinearGradientBrush EndPoint="0,1">
@@ -28,10 +30,11 @@
 
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="DeepSkyBlue" Visibility="Hidden" Margin="5 5 5 5"></Button>
-            <Button Content="Удалить" Name="BtnDelete" Click="BtnDelete_Click" Width="100px" Background="DeepSkyBlue" Visibility="Hidden" Margin="5 5 5 5"></Button>
+                <Button Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="Black" Foreground="White" BorderBrush="Green" BorderThickness="2px" Visibility="Hidden" Margin="5 5 5 5"></Button>
+                <Button Content="Удалить" Name="BtnDelete" Click="BtnDelete_Click" Width="100px" Background="Black" Foreground="White" BorderBrush="Red" BorderThickness="2px" Visibility="Hidden" Margin="5 5 5 5"></Button>
         </StackPanel>
-        <ListView Grid.Row="1" Name="LViewTasks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+         </Grid>
+        <ListView Grid.Row="1" Background="#cccccc" Name="LViewTasks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <EventSetter Event="MouseRightButtonUp" Handler="ListViewItem_MouseRightButtonUp" />
@@ -44,7 +47,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="20" Width="auto">
+                    <Grid Margin="20" Width="auto" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"></RowDefinition>
                             <RowDefinition Height="auto"></RowDefinition>
@@ -55,10 +58,12 @@
 
                         <TextBlock Text="{Binding TaskName}"  TextAlignment="Justify" Width="auto" TextWrapping="Wrap"
                                    HorizontalAlignment="Left" Margin="0 5" FontSize="26" Grid.Row="0"></TextBlock>
-                        <TextBlock Text="{Binding CompletionTime, StringFormat={}Время выполнения: {0} минут}"  Grid.Row="1" Margin="0 5 5 5" HorizontalAlignment="Left" FontSize="26" FontWeight="SemiBold"></TextBlock>
+                        <TextBlock Text="{Binding CompletionTime, StringFormat={}Время выполнения: {0} минут}"  
+                                   Grid.Row="1" Margin="0 5 5 5" HorizontalAlignment="Left" FontSize="26" FontWeight="SemiBold"></TextBlock>
                         <TextBlock Text="{Binding Discipline.DisciplineName}"  Grid.Row="2" FontSize="14" HorizontalAlignment="Left" FontWeight="ExtraBold"></TextBlock>
                         <TextBlock Text="{Binding Description}"  Grid.Row="3" FontSize="14" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow"></TextBlock>
-                        <Button Grid.Row="4" Content="Word" Name="BtnWord" Click="BtnWord_Click" Width="50px" Background="DeepSkyBlue"></Button>
+                        <Button Grid.Row="4" Content="Word" Name="BtnWord" Click="BtnWord_Click" Width="100px" Height="50px" 
+                                HorizontalAlignment="Left" Background="Black" Foreground="White" BorderBrush="SkyBlue" BorderThickness="2px"></Button>
 
                     </Grid>
                 </DataTemplate>

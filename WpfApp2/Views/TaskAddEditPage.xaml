@@ -8,20 +8,21 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TaskAddEditPage">
 
-        <Grid Background="White">
+    <Grid Background="#242424">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
-                <TextBlock Text="Название задания" FontSize="16"/>
+                <TextBlock Foreground="White" Text="Название задания" FontSize="16"/>
                 <TextBox Text="{Binding TaskName}" FontSize="16"/>
-                <TextBlock Text="Время выполнения (в минутах)" FontSize="16"/>
+            <TextBlock Foreground="White" Text="Время выполнения (в минутах)" FontSize="16"/>
                 <TextBox Text="{Binding CompletionTime}" FontSize="16"/>
-                <Label FontSize="16" Padding="0">Дисциплина</Label>
+            <Label Foreground="White" FontSize="16" Padding="0">Дисциплина</Label>
                 <ComboBox SelectedItem="{Binding DisciplineID}" x:Name="ComboDisc" DisplayMemberPath="DisciplineName"></ComboBox>
-                <Button Height="20" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"/>
+                <Button Height="25" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"
+                        Background="Black" Foreground="White" BorderBrush="Green" BorderThickness="2px"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <TextBlock Text="Описание"></TextBlock>

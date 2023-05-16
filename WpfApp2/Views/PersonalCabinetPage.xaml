@@ -8,7 +8,51 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PersonalCabinetPage">
 
-    <Grid>
+    <Grid Background="#cccccc">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="210"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
+        <TextBlock Text="Личный кабинет" FontSize="22pt" FontStyle="Oblique" HorizontalAlignment="Center"></TextBlock>
+        <Grid Grid.Row="1" Background="#242424">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Width="250" HorizontalAlignment="Right" Grid.Row="1">
+                <TextBlock Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Имя пользователя: " FontSize="16pt"></TextBlock>
+                <TextBlock Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Фамилия пользователя: " FontSize="16pt"></TextBlock>
+                <TextBlock Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Отчество пользователя: " FontSize="16pt"></TextBlock>
+                <TextBlock Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Почта: " FontSize="16pt"></TextBlock>
+                <TextBlock Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Пароль: " FontSize="16pt"></TextBlock>
+                <TextBlock Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Роль: " FontSize="16pt"></TextBlock>
+        </StackPanel>
+        <StackPanel Width="250" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1">
+            <TextBlock Name="TBName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0"  Text="name" FontSize="16pt" Foreground="#cccccc"></TextBlock>
+                <TextBlock Name="TBSurname" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0"  Text="surname" FontSize="16pt" Foreground="#cccccc"></TextBlock>
+                <TextBlock Name="TBPatronymic" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0"  Text="patronymic" FontSize="16pt" Foreground="#cccccc"></TextBlock>
+                <TextBlock Name="TBMail" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0"  Text="mail" FontSize="16pt" Foreground="#cccccc"></TextBlock>
+                <TextBlock Name="TBPassword" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0"  Text="pass" FontSize="16pt" Foreground="#cccccc"></TextBlock>
+                <TextBlock Name="TBRole" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0"  Text="position" FontSize="16pt" Foreground="#cccccc"></TextBlock>
+         </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="2" >
+            <TextBlock Text="Мои задания" Name="LBoxHeader" FontSize="16pt" HorizontalAlignment="Left" Foreground="Black"></TextBlock>
+            <ListBox Width="600" HorizontalAlignment="Left" d:ItemsSource="{d:SampleData ItemCount=5}" Name="LBMyTasks"
+                     BorderBrush="ForestGreen" BorderThickness="3px" Background="Black">
+                <ListBox.ItemTemplate>
+
+                    <DataTemplate>
+                        <Grid Background="Azure" Width="590" HorizontalAlignment="Center">
+                            <TextBlock HorizontalAlignment="Center" Text="{Binding TaskName}" FontSize="14pt"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                    
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
     </Grid>
 </Page>

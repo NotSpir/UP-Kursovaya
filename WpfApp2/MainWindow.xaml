@@ -12,27 +12,30 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        <Frame Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentLoaded"/>
-        <Grid Grid.Row="0"  Background="DarkBlue">
-            <Menu Name="MainMenu" Margin="0,0,0,60">
+        <Frame Background="#cccccc" Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentLoaded"/>
+        <Grid Grid.Row="0"  Background="#242424">
+            <Menu FontSize="14px" Background="Black" Foreground="White" BorderBrush="White" BorderThickness="1px" Name="MainMenu" Margin="0,0,0,49">
 
-                <MenuItem Name="MenuPersonal" Header="Пользователь">
-                    <MenuItem Name="MenuPersCabinet" Click="OpenPersonalCabinet" Header="Перейти в личный кабинет" />
-                    <MenuItem Name="MenuLogOut" Click="LogOutButton_Click" Header="Выйти из пользователя" />
+                <MenuItem BorderBrush="White" BorderThickness="1px" Name="MenuPersonal" Header="Пользователь">
+                    <MenuItem Foreground="Black" Name="MenuPersCabinet" Click="OpenPersonalCabinet" Header="Перейти в личный кабинет" />
+                    <MenuItem Foreground="Black" Name="MenuLogOut" Click="LogOutButton_Click" Header="Выйти из пользователя" />
                 </MenuItem>
 
-                <MenuItem Name="MenuEdit" Header="Данные">
-                    <MenuItem Name="TeachItem1" Click="AddNewTask" Header="Добавить новое задание" />
-                    <MenuItem Name="TeachItem2" Click="AddNewBase" Header="Добавить новый банк" />
-                    <MenuItem Name="AdminItem1" Click="CheckUsers" Header="Просмотреть пользователей"/>
-                    <MenuItem Name="AdminItem2" Click="CheckDisciplines" Header="Просмотреть дисциплины" />
-                    <MenuItem Name="AdminItem3" Click="CheckAllTasks" Header="Просмотреть все задания"/>
-                    <MenuItem Name="AdminItem4" Click="CheckAllTaskBases" Header="Просмотреть все банки заданий"/>
+                <MenuItem BorderBrush="White" BorderThickness="1px" Name="MenuEdit" Header="Данные">
+                    <MenuItem Foreground="Black" Name="TeachItem1" Click="AddNewTask" Header="Добавить новое задание" />
+                    <MenuItem Foreground="Black" Name="TeachItem2" Click="AddNewBase" Header="Добавить новый банк" />
+                    <MenuItem Foreground="Black" Name="AdminItem1" Click="CheckUsers" Header="Просмотреть пользователей"/>
+                    <MenuItem Foreground="Black" Name="AdminItem2" Click="CheckDisciplines" Header="Просмотреть дисциплины" />
+                    <MenuItem Foreground="Black" Name="AdminItem3" Click="CheckAllTasks" Header="Просмотреть все задания"/>
+                    <MenuItem Foreground="Black" Name="AdminItem4" Click="CheckAllTaskBases" Header="Просмотреть все банки заданий"/>
                 </MenuItem>
 
             </Menu>
+            <TextBlock Text="Банк заданий" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24pt" VerticalAlignment="Center" Margin="0 20 0 0" Foreground="White"/>
+
         </Grid>
-        <Grid Grid.Row="2" Background="Black"/>
-        <Button Name="GoBackButton" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Center" Height="35" Width="153" Click="GoBackButton_Click"/>
+        <Grid Grid.Row="2" Background="Black" />
+        <Button Name="GoBackButton" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                Height="35" Width="100" Margin="0 20 0 0" Click="GoBackButton_Click" Background="Black" Foreground="White" BorderBrush="Orange" BorderThickness="2px"/>
     </Grid>
 </Window>

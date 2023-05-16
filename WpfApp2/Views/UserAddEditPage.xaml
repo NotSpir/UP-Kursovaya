@@ -8,25 +8,25 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="UserAddEditPage">
 
-    <Grid Background="White">
+    <Grid Background="#242424">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
-            <TextBlock Text="Имя" FontSize="16"/>
+            <TextBlock Foreground="White" Text="Имя" FontSize="16"/>
             <TextBox Text="{Binding FirstName}" FontSize="16"/>
-            <TextBlock Text="Фамилия" FontSize="16"/>
+            <TextBlock Foreground="White" Text="Фамилия" FontSize="16"/>
             <TextBox Text="{Binding Surname}" FontSize="16"/>
-            <TextBlock Text="Отчество" FontSize="16"/>
+            <TextBlock Foreground="White" Text="Отчество" FontSize="16"/>
             <TextBox Text="{Binding Patronymic}" FontSize="16"/>
-            <TextBlock Text="Дата рождения" FontSize="16"/>
+            <TextBlock Foreground="White" Text="Дата рождения" FontSize="16"/>
             <DatePicker Name="DPDateDel" SelectedDate="{Binding Birthdate}"></DatePicker>
-            <TextBlock Text="Почта" FontSize="16"/>
+            <TextBlock Foreground="White" Text="Почта" FontSize="16"/>
             <TextBox Text="{Binding email}" FontSize="16"/>
-            <Label FontSize="16" Padding="0">Роль</Label>
+            <Label Foreground="White" FontSize="16" Padding="0">Роль</Label>
             <ComboBox SelectedItem="{Binding Position}" x:Name="ComboRoles" DisplayMemberPath="PositionName"></ComboBox>
-            <TextBlock Text="Пароль" FontSize="16"/>
+            <TextBlock Foreground="White" Text="Пароль" FontSize="16"/>
             <TextBox Text="{Binding Password}" FontSize="16"/>
-            <TextBlock Name="test"></TextBlock>
-    
-            <Button Height="20" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"/>
+
+            <Button Height="25" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"
+                    Background="Black" Foreground="White" BorderBrush="Green" BorderThickness="2px"/>
         </StackPanel>
     </Grid>
 </Page>
