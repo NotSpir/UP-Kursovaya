@@ -53,7 +53,7 @@ namespace WpfApp2.Views
             }
 
             if (people.ID == 0)
-                people.Position = 2;
+                people.Position = 3;
                 AppData.db.Users.Add(people);
             try 
             { 

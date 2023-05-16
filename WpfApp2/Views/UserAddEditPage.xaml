@@ -17,13 +17,14 @@
             <TextBlock Text="Отчество" FontSize="16"/>
             <TextBox Text="{Binding Patronymic}" FontSize="16"/>
             <TextBlock Text="Дата рождения" FontSize="16"/>
-            <DatePicker Name="DPDateDel" DisplayDate="{Binding Birthdate}"></DatePicker>
+            <DatePicker Name="DPDateDel" SelectedDate="{Binding Birthdate}"></DatePicker>
             <TextBlock Text="Почта" FontSize="16"/>
             <TextBox Text="{Binding email}" FontSize="16"/>
             <Label FontSize="16" Padding="0">Роль</Label>
             <ComboBox SelectedItem="{Binding Position}" x:Name="ComboRoles" DisplayMemberPath="PositionName"></ComboBox>
             <TextBlock Text="Пароль" FontSize="16"/>
             <TextBox Text="{Binding Password}" FontSize="16"/>
+            <TextBlock Name="test"></TextBlock>
     
             <Button Height="20" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"/>
         </StackPanel>

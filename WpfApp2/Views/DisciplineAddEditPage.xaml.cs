@@ -19,10 +19,10 @@ namespace WpfApp2.Views
     /// <summary>
     /// Логика взаимодействия для ServiceAddEditPage.xaml
     /// </summary>
-    public partial class ServiceAddEditPage : Page
+    public partial class DisciplineAddEditPage : Page
     {
         private Discipline dataElement = new Discipline();
-        public ServiceAddEditPage(Discipline selectedData)
+        public DisciplineAddEditPage(Discipline selectedData)
         {
             InitializeComponent();
             if (selectedData != null)

@@ -19,9 +19,9 @@ namespace WpfApp2.Views
     /// <summary>
     /// Логика взаимодействия для ServicePage.xaml
     /// </summary>
-    public partial class ServicePage : Page
+    public partial class DisciplinePage : Page
     {
-        public ServicePage()
+        public DisciplinePage()
         {
             InitializeComponent();
             DGridMenu.ItemsSource = AppData.db.Discipline.ToList();
@@ -29,12 +29,12 @@ namespace WpfApp2.Views
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ServiceAddEditPage(null));
+            NavigationService.Navigate(new DisciplineAddEditPage(null));
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            var dataForRemoving = DGridMenu.SelectedItems.Cast<Service>().ToList();
+            var dataForRemoving = DGridMenu.SelectedItems.Cast<Discipline>().ToList();
             if (MessageBox.Show($"Вы точно хотите удалить следующие {dataForRemoving.Count()} элементов?", "Внимание",
                 MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
@@ -55,7 +55,7 @@ namespace WpfApp2.Views
         private void SelectRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
-                NavigationService.Navigate(new ServiceAddEditPage((sender as DataGridRow).DataContext as Discipline));
+                NavigationService.Navigate(new DisciplineAddEditPage((sender as DataGridRow).DataContext as Discipline));
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

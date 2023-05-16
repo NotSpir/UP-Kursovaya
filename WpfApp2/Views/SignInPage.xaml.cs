@@ -50,9 +50,15 @@ namespace WpfApp2.Views
                 sr.WriteLine(AppData.CurrentUser.email);
                 sr.WriteLine(AppData.CurrentUser.Password);
                 sr.Close();
+
+                MainWindow newWindow = new MainWindow();
+                Application.Current.MainWindow.Close();
+                Application.Current.MainWindow = newWindow;
+                newWindow.Show();
+
                 if (AppData.CurrentUser.Position == 1)
                 {
-                    NavigationService.Navigate(new AdminPage());
+                    NavigationService.Navigate(new ShopPage());
                 }
                 else
                 {

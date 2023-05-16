@@ -147,23 +147,32 @@
     <Compile Include="Model\Users.cs">
       <DependentUpon>StudyModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\AdminPage.xaml.cs">
-      <DependentUpon>AdminPage.xaml</DependentUpon>
+    <Compile Include="Views\PersonalCabinetPage.xaml.cs">
+      <DependentUpon>PersonalCabinetPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ServiceAddEditPage.xaml.cs">
-      <DependentUpon>ServiceAddEditPage.xaml</DependentUpon>
+    <Compile Include="Views\DisciplineAddEditPage.xaml.cs">
+      <DependentUpon>DisciplineAddEditPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ServicePage.xaml.cs">
-      <DependentUpon>ServicePage.xaml</DependentUpon>
+    <Compile Include="Views\DisciplinePage.xaml.cs">
+      <DependentUpon>DisciplinePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShopPage.xaml.cs">
       <DependentUpon>ShopPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaskAddEditPage.xaml.cs">
+      <DependentUpon>TaskAddEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaskBanksAddEditPage.xaml.cs">
+      <DependentUpon>TaskBanksAddEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaskBanksPage.xaml.cs">
+      <DependentUpon>TaskBanksPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserAddEditPage.xaml.cs">
       <DependentUpon>UserAddEditPage.xaml</DependentUpon>
@@ -183,7 +192,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\AdminPage.xaml">
+    <Page Include="Views\PersonalCabinetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,11 +200,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ServiceAddEditPage.xaml">
+    <Page Include="Views\DisciplineAddEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ServicePage.xaml">
+    <Page Include="Views\DisciplinePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,6 +213,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SignInPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaskAddEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaskBanksAddEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaskBanksPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

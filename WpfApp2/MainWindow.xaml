@@ -13,9 +13,26 @@
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <Frame Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentLoaded"/>
-        <Grid Grid.Row="0"  Background="DarkBlue"/>
+        <Grid Grid.Row="0"  Background="DarkBlue">
+            <Menu Name="MainMenu" Margin="0,0,0,60">
+
+                <MenuItem Name="MenuPersonal" Header="Пользователь">
+                    <MenuItem Name="MenuPersCabinet" Click="OpenPersonalCabinet" Header="Перейти в личный кабинет" />
+                    <MenuItem Name="MenuLogOut" Click="LogOutButton_Click" Header="Выйти из пользователя" />
+                </MenuItem>
+
+                <MenuItem Name="MenuEdit" Header="Данные">
+                    <MenuItem Name="TeachItem1" Click="AddNewTask" Header="Добавить новое задание" />
+                    <MenuItem Name="TeachItem2" Click="AddNewBase" Header="Добавить новый банк" />
+                    <MenuItem Name="AdminItem1" Click="CheckUsers" Header="Просмотреть пользователей"/>
+                    <MenuItem Name="AdminItem2" Click="CheckDisciplines" Header="Просмотреть дисциплины" />
+                    <MenuItem Name="AdminItem3" Click="CheckAllTasks" Header="Просмотреть все задания"/>
+                    <MenuItem Name="AdminItem4" Click="CheckAllTaskBases" Header="Просмотреть все банки заданий"/>
+                </MenuItem>
+
+            </Menu>
+        </Grid>
         <Grid Grid.Row="2" Background="Black"/>
         <Button Name="GoBackButton" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Center" Height="35" Width="153" Click="GoBackButton_Click"/>
-        <Button Name="LogOutButton" Content="Выйти" HorizontalAlignment="Right" Margin="0 0 160 0" VerticalAlignment="Center" Height="35" Width="153" Click="LogOutButton_Click"/>
     </Grid>
 </Window>

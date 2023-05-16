@@ -26,20 +26,28 @@ namespace WpfApp2
         public MainWindow()
         {
             InitializeComponent();
-            string currentMail = File.ReadLines("..\\LoginData.txt").First();
-            string currentPassword = File.ReadLines("..\\LoginData.txt").Last();
+            string currentMail = "";
+            string currentPassword = ""; 
+            try {
+                currentMail = File.ReadLines("..\\LoginData.txt").First();
+                currentPassword = File.ReadLines("..\\LoginData.txt").Last();
+            } catch { }
             if (AppData.db.Users.FirstOrDefault(u => u.email == currentMail && u.Password == currentPassword) != null)
             {
                 AppData.CurrentUser = AppData.db.Users.FirstOrDefault(u => u.email == currentMail && u.Password == currentPassword);
                 if (AppData.CurrentUser.Position == 1)
-                MainFrame.Navigate(new AdminPage());
+                    MainFrame.Navigate(new ShopPage());
                 if (AppData.CurrentUser.Position == 2)
                     MainFrame.Navigate(new ShopPage());
                 if (AppData.CurrentUser.Position == 3)
                     MainFrame.Navigate(new ShopPage());
             }
-            else MainFrame.Navigate(new SignInPage());
-
+            else
+            {
+                MainFrame.Navigate(new SignInPage());
+                MenuPersonal.Visibility = Visibility.Hidden;
+            }
+            
             AppData.MainFrame = MainFrame;
         }
 
@@ -48,12 +56,10 @@ namespace WpfApp2
             if (MainFrame.CanGoBack)
             {
                 GoBackButton.Visibility = Visibility.Visible;
-                LogOutButton.Visibility = Visibility.Visible;
             }
             else
             {
                 GoBackButton.Visibility = Visibility.Hidden;
-                LogOutButton.Visibility = Visibility.Hidden;
             }
             
         }
@@ -65,7 +71,49 @@ namespace WpfApp2
 
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new SignInPage());
+            StreamWriter sr = new StreamWriter("..\\LoginData.txt");
+            File.WriteAllText(sr.ToString(), "");
+            sr.Close();
+            MainWindow newWindow = new MainWindow();
+            Application.Current.MainWindow.Close();
+            Application.Current.MainWindow = newWindow;
+            newWindow.Show();
+            
+            AppData.MainFrame.Navigate(new SignInPage());
+        }
+
+        private void AddNewTask(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddNewBase(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckUsers(object sender, RoutedEventArgs e)
+        {
+            AppData.MainFrame.Navigate(new UserPage());
+        }
+
+        private void CheckDisciplines(object sender, RoutedEventArgs e)
+        {
+            AppData.MainFrame.Navigate(new DisciplinePage());
+        }
+
+        private void CheckAllTasks(object sender, RoutedEventArgs e)
+        {
+            AppData.MainFrame.Navigate(new ShopPage());
+        }
+
+        private void CheckAllTaskBases(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OpenPersonalCabinet(object sender, RoutedEventArgs e)
+        {
 
         }
     }

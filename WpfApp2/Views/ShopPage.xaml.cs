@@ -30,28 +30,30 @@ namespace WpfApp2.Views
             var allTypes = AppData.db.Discipline.ToList();
             allTypes.Insert(0, new Discipline
             {
-                DisciplineName = "Все типы"
+                DisciplineName = "Любая дисциплина"
             });
             ComboType.ItemsSource = allTypes;
             ComboType.SelectedIndex = 0;
+
             if (AppData.CurrentUser.Position == 1)
             {
                 BtnDelete.Visibility = Visibility.Visible;
-                BtnEdit.Visibility = Visibility.Visible;
-            }    
+                BtnAdd.Visibility = Visibility.Visible;
+            }
 
-            var currentSrevices = AppData.db.TaskNames.ToList();
-            LViewTasks.ItemsSource = currentSrevices;
+            UpdateShop();
         }
         private void UpdateShop()
         {
-            var currentServices = AppData.db.TaskNames.ToList();
+            var currentTasks = AppData.db.TaskNames.ToList();
             if (ComboType.SelectedIndex != 0)
-                currentServices = currentServices.Where(c => c.Discipline.DisciplineName == ComboType.SelectedValue).ToList();
+                currentTasks = currentTasks.Where(c => c.Discipline == ComboType.SelectedValue).ToList();
 
-            currentServices = currentServices.Where(c => c.TaskName.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            currentTasks = currentTasks.Where(c => c.TaskName.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
 
             //LViewTasks.ItemsSource = currentServices.OrderBy(p => p.Price).ToList();
+
+            LViewTasks.ItemsSource = currentTasks;
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -69,19 +71,29 @@ namespace WpfApp2.Views
             NavigationService.GoBack();
         }
 
-        private void BtnEdit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            var tasksForRemoving = LViewTasks.SelectedItems.Cast<TaskNames>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить следующие {tasksForRemoving.Count()} элементов?", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    AppData.db.TaskNames.RemoveRange((IEnumerable<TaskNames>)tasksForRemoving);
+                    AppData.db.SaveChanges();
+                    MessageBox.Show("Данные удалены!");
+                    LViewTasks.ItemsSource = AppData.db.TaskNames.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            AppData.MainFrame.Navigate(new TaskAddEditPage(null));
         }
 
         private void BtnWord_Click(object sender, RoutedEventArgs e)
@@ -106,5 +118,18 @@ namespace WpfApp2.Views
 
             */
         }
+
+        private void ListViewItem_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (AppData.CurrentUser.Position == 1)
+            if (sender != null)
+                NavigationService.Navigate(new TaskAddEditPage((sender as ListViewItem).DataContext as TaskNames));
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //ПКМ будет помечать задание выполненым
+        }
+
     }
     }

@@ -33,7 +33,7 @@ namespace WpfApp2.Views
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            var usersForRemoving = DGridMenu.SelectedItems.Cast<Client>().ToList();
+            var usersForRemoving = DGridMenu.SelectedItems.Cast<Users>().ToList();
             if (MessageBox.Show($"Вы точно хотите удалить следующие {usersForRemoving.Count()} элементов?", "Внимание",
                 MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {

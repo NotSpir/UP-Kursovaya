@@ -51,6 +51,8 @@ namespace WpfApp2.Views
                 errors.AppendLine("Укажите пароль");
             if (ComboRoles.SelectedItem == null)
                 errors.AppendLine("Укажите уровень доступа");
+            if (DPDateDel == null)
+                errors.AppendLine("Укажите дату рождения");
 
             var repeatEmail = AppData.db.Users.FirstOrDefault(u => u.email == people.email && u.ID != people.ID);
             if (repeatEmail != null)
@@ -72,7 +74,7 @@ namespace WpfApp2.Views
                 people.Position = currentAccess.ID;
                 AppData.db.SaveChanges();
                 MessageBox.Show("Данные сохранены");
-                NavigationService.GoBack();
+                NavigationService.GoBack(); 
             }
             catch (Exception ex)
             {
