@@ -13,10 +13,10 @@ namespace WpfApp2.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TaskBankEntities : DbContext
+    public partial class TaskBankEntitiess : DbContext
     {
-        public TaskBankEntities()
-            : base("name=TaskBankEntities")
+        public TaskBankEntitiess()
+            : base("name=TaskBankEntitiess")
         {
         }
     
@@ -25,6 +25,7 @@ namespace WpfApp2.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CompletedTaskUser> CompletedTaskUser { get; set; }
         public virtual DbSet<Discipline> Discipline { get; set; }
         public virtual DbSet<Positions> Positions { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }

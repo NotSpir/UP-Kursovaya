@@ -11,12 +11,14 @@ namespace WpfApp2.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class TaskNames
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TaskNames()
         {
+            this.CompletedTaskUser = new HashSet<CompletedTaskUser>();
             this.TasksIBanks = new HashSet<TasksIBanks>();
         }
     
@@ -26,10 +28,27 @@ namespace WpfApp2.Model
         public Nullable<int> CompletionTime { get; set; }
         public int DisciplineID { get; set; }
         public int Author { get; set; }
-    
+        public string WordVersion { get; set; }
+        
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompletedTaskUser> CompletedTaskUser { get; set; }
         public virtual Discipline Discipline { get; set; }
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TasksIBanks> TasksIBanks { get; set; }
+
+        public bool Color { get
+            {
+                var newComplete = new CompletedTaskUser();
+                newComplete.UserID = AppData.CurrentUser.ID;
+                newComplete.CompletedTaskID = this.ID;
+                if (AppData.db.CompletedTaskUser.FirstOrDefault(u => u.UserID == newComplete.UserID && u.CompletedTaskID == newComplete.CompletedTaskID) != null) 
+                {
+                    return true;
+                } else  
+                return false;
+            } 
+        }
     }
 }

@@ -30,14 +30,29 @@
 
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="Black" Foreground="White" BorderBrush="Green" BorderThickness="2px" Visibility="Hidden" Margin="5 5 5 5"></Button>
-                <Button Content="Удалить" Name="BtnDelete" Click="BtnDelete_Click" Width="100px" Background="Black" Foreground="White" BorderBrush="Red" BorderThickness="2px" Visibility="Hidden" Margin="5 5 5 5"></Button>
+                <Button Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="Black" Foreground="White" 
+                        BorderBrush="Green" BorderThickness="2px" Visibility="Hidden" Margin="5 5 5 5"></Button>
+                <Button Content="Удалить" Name="BtnDelete" Click="BtnDelete_Click" Width="100px" Foreground="White" 
+                        BorderThickness="2px" Background="Black" BorderBrush="Red" Visibility="Hidden" Margin="5 5 5 5" >
+                </Button>
         </StackPanel>
          </Grid>
-        <ListView Grid.Row="1" Background="#cccccc" Name="LViewTasks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+        <ListView Grid.Row="1" Background="#242424" Name="LViewTasks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Left">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <EventSetter Event="MouseRightButtonUp" Handler="ListViewItem_MouseRightButtonUp" />
+                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick" />
+                    <Setter Property="BorderBrush" Value="DeepSkyBlue" />
+                    <Setter Property="BorderThickness" Value="0,2,0,2" />
+                    <Setter Property="Width" Value="1250px" />
+                    <Setter Property="Background" Value="#cccccc" />
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Color}" Value="True">
+                            <Setter Property="Background" Value="LimeGreen"/>
+                        </DataTrigger >
+                    </Style.Triggers>
+
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemsPanel>

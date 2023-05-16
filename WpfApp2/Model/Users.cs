@@ -17,6 +17,7 @@ namespace WpfApp2.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
+            this.CompletedTaskUser = new HashSet<CompletedTaskUser>();
             this.TaskNames = new HashSet<TaskNames>();
         }
     
@@ -29,6 +30,8 @@ namespace WpfApp2.Model
         public string email { get; set; }
         public string Password { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompletedTaskUser> CompletedTaskUser { get; set; }
         public virtual Positions Positions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaskNames> TaskNames { get; set; }

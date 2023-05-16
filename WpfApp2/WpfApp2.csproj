@@ -72,11 +72,14 @@
     <Compile Include="Model\Client.cs">
       <DependentUpon>InstrModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CompletedTaskUser.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\C__EFMigrationsHistory.cs">
       <DependentUpon>InstrModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Discipline.cs">
-      <DependentUpon>StudyModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\InstrModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -105,6 +108,21 @@
     <Compile Include="Model\Manufacturer.cs">
       <DependentUpon>InstrModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Order.cs">
       <DependentUpon>InstrModel.tt</DependentUpon>
     </Compile>
@@ -112,40 +130,25 @@
       <DependentUpon>InstrModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Positions.cs">
-      <DependentUpon>StudyModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service.cs">
       <DependentUpon>InstrModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\StudyModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StudyModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StudyModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StudyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StudyModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StudyModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Model\sysdiagrams.cs">
-      <DependentUpon>StudyModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TaskBanks.cs">
-      <DependentUpon>StudyModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TaskNames.cs">
-      <DependentUpon>StudyModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TasksIBanks.cs">
-      <DependentUpon>StudyModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Users.cs">
-      <DependentUpon>StudyModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Views\PersonalCabinetPage.xaml.cs">
       <DependentUpon>PersonalCabinetPage.xaml</DependentUpon>
@@ -262,12 +265,12 @@
     <None Include="Model\InstrModel.edmx.diagram">
       <DependentUpon>InstrModel.edmx</DependentUpon>
     </None>
-    <EntityDeploy Include="Model\StudyModel.edmx">
+    <EntityDeploy Include="Model\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StudyModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\StudyModel.edmx.diagram">
-      <DependentUpon>StudyModel.edmx</DependentUpon>
+    <None Include="Model\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -292,15 +295,15 @@
       <DependentUpon>InstrModel.edmx</DependentUpon>
       <LastGenOutput>InstrModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\StudyModel.Context.tt">
+    <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StudyModel.edmx</DependentUpon>
-      <LastGenOutput>StudyModel.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\StudyModel.tt">
+    <Content Include="Model\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StudyModel.edmx</DependentUpon>
-      <LastGenOutput>StudyModel.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <None Include="Views\Resources\Yamaha_DTP532.jpg" />
     <None Include="Views\Resources\Yamaha_BB234BL.jpg" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,7 @@ namespace WpfApp2.Views
     /// </summary>
     public partial class ShopPage : Page
     {
+        List<TaskNames> currentTasks = AppData.db.TaskNames.ToList();
         public ShopPage()
         {
             InitializeComponent();
@@ -41,11 +43,11 @@ namespace WpfApp2.Views
                 BtnAdd.Visibility = Visibility.Visible;
             }
 
-            UpdateShop();
+            LViewTasks.ItemsSource = currentTasks;
         }
         private void UpdateShop()
         {
-            var currentTasks = AppData.db.TaskNames.ToList();
+            currentTasks = AppData.db.TaskNames.ToList();
             if (ComboType.SelectedIndex != 0)
                 currentTasks = currentTasks.Where(c => c.Discipline == ComboType.SelectedValue).ToList();
 
@@ -54,6 +56,7 @@ namespace WpfApp2.Views
             //LViewTasks.ItemsSource = currentServices.OrderBy(p => p.Price).ToList();
 
             LViewTasks.ItemsSource = currentTasks;
+            
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -128,7 +131,27 @@ namespace WpfApp2.Views
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //ПКМ будет помечать задание выполненым
+            //Двойное ЛКМ будет помечать задание выполненым или отменять выполнение
+            if (sender != null)
+            {
+                var newComplete = new CompletedTaskUser();
+                newComplete.UserID = AppData.CurrentUser.ID;
+                newComplete.CompletedTaskID = ((sender as ListViewItem).DataContext as TaskNames).ID;
+                var oldComplete = AppData.db.CompletedTaskUser.FirstOrDefault(u => u.UserID == newComplete.UserID && u.CompletedTaskID == newComplete.CompletedTaskID);
+                if (oldComplete != null)
+                {
+                    AppData.db.CompletedTaskUser.Remove(oldComplete);
+                    AppData.db.SaveChanges();
+                    (sender as ListViewItem).Background = Brushes.White;
+                    return;
+                }
+                else
+                {
+                    AppData.db.CompletedTaskUser.Add(newComplete);
+                    AppData.db.SaveChanges();
+                    (sender as ListViewItem).Background = Brushes.LimeGreen;
+                }
+            }
         }
 
     }

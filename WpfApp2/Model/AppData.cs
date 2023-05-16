@@ -10,7 +10,7 @@ namespace WpfApp2.Model
     public static class AppData
     {
         public static Frame MainFrame { get; set; }
-        public static TaskBankEntities db = new TaskBankEntities();
+        public static TaskBankEntitiess db = new TaskBankEntitiess();
         //public static InstrEntities dbold = new InstrEntities();
         public static Users CurrentUser = new Users();
     }
