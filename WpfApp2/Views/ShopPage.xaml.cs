@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp2.Model;
-// Word = Microsoft.Office.Interop.Word;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace WpfApp2.Views
 {
@@ -101,7 +101,7 @@ namespace WpfApp2.Views
 
         private void BtnWord_Click(object sender, RoutedEventArgs e)
         {
-            /*    //Report 1 №п/п; Вид сырья; Сумма, внизу Итого:
+                //Report 1 №п/п; Вид сырья; Сумма, внизу Итого:
                 object oMissing = System.Reflection.Missing.Value;
                 object oEndOfDoc = "\\endofdoc"; // \endofdoc is a predefined bookmark 
 
@@ -113,13 +113,73 @@ namespace WpfApp2.Views
                 oDoc = oWord.Documents.Add(ref oMissing, ref oMissing,
                 ref oMissing, ref oMissing);
 
-                //Собственно вставка таблицы, в данном случае  (Кол-во видов сырья) x 3
+                //Собственно вставка данных в .docx документ
 
                 Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-                int r, c;
-                string strText;
+            var dataForWord = (sender as Button).DataContext as TaskNames;
+            string textName = dataForWord.TaskName;
+            var author = AppData.db.Users.ToList().Where(u => u.ID == dataForWord.Author).FirstOrDefault();
+            var discipline = AppData.db.Discipline.ToList().Where(u => u.ID == dataForWord.DisciplineID).FirstOrDefault();
+            string textMadeBy = $"Задание создал(а): {author.Surname} {author.FirstName} {author.Patronymic}";
+            string textDiscipline = $"Дисциплина: {discipline.DisciplineName}";
+            string textCompleteTime = $"Время выполнения задания: {dataForWord.CompletionTime.ToString()} мин.";
+            string textTask = dataForWord.Description;
 
-            */
+            Word.Paragraph oPara1;
+            oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
+            oPara1.Range.Text = textName;
+            oPara1.Range.Font.Bold = 1;
+            oPara1.Range.Font.Size = 36;
+            oPara1.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            oPara1.Format.SpaceAfter = 16;    //24 pt spacing after paragraph.
+            oPara1.Range.InsertParagraphAfter();
+
+            Word.Paragraph oPara2;
+            oPara2 = oDoc.Content.Paragraphs.Add();
+            oPara2.Range.Text = textMadeBy;
+            oPara2.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
+            oPara2.Range.Font.Bold = 1;
+            oPara2.Range.Font.Italic = 1;
+            oPara2.Range.Font.Size = 14;
+            oPara2.Format.SpaceAfter = 12;
+            oPara2.Range.InsertParagraphAfter();
+
+            Word.Paragraph oPara3;
+            oPara3 = oDoc.Content.Paragraphs.Add();
+            oPara3.Range.Text = textDiscipline;
+            oPara3.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
+            oPara3.Range.Font.Bold = 1;
+            oPara3.Range.Font.Size = 14;
+            oPara3.Format.SpaceAfter = 12;
+            oPara3.Range.InsertParagraphAfter();
+
+            Word.Paragraph oPara4;
+            oPara4 = oDoc.Content.Paragraphs.Add();
+            oPara4.Range.Text = textCompleteTime;
+            oPara3.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
+            oPara4.Range.Font.Bold = 1;
+            oPara3.Range.Font.Size = 14;
+            oPara4.Format.SpaceAfter = 24;
+            oPara4.Range.InsertParagraphAfter();
+
+            Word.Paragraph oPar;
+            oPar = oDoc.Content.Paragraphs.Add(ref oMissing);
+            oPar.Range.Text = "Краткое описание работы";
+            oPar.Range.Font.Bold = 1;
+            oPara2.Range.Font.Italic = 0;
+            oPar.Range.Font.Size = 24;
+            oPar.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            oPar.Format.SpaceAfter = 16;    //24 pt spacing after paragraph.
+            oPar.Range.InsertParagraphAfter();
+
+            Word.Paragraph oPara5;
+            oPara5 = oDoc.Content.Paragraphs.Add();
+            oPara5.Range.Text = textTask;
+            oPara2.Range.Font.Size = 14;
+            oPar.Range.Font.Bold = 0;
+            oPara5.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
+            oPara5.Format.SpaceAfter = 24;
+            oPara5.Range.InsertParagraphAfter();
         }
 
         private void ListViewItem_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
