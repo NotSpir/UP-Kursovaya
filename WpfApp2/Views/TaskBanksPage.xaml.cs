@@ -53,7 +53,22 @@ namespace WpfApp2.Views
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            var tasksForRemoving = LViewBanks.SelectedItems.Cast<TaskBanks>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить следующие {tasksForRemoving.Count()} банков заданий?", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    AppData.db.TaskBanks.RemoveRange((IEnumerable<TaskBanks>)tasksForRemoving);
+                    AppData.db.SaveChanges();
+                    MessageBox.Show("Данные удалены!");
+                    LViewBanks.ItemsSource = AppData.db.TaskBanks.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
