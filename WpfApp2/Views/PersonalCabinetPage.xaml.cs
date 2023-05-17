@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,8 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfApp2.Model;
-
+using WpfApp2.Model; //s
 namespace WpfApp2.Views
 {
     /// <summary>
@@ -32,7 +32,16 @@ namespace WpfApp2.Views
             TBPassword.Text = AppData.CurrentUser.Password;
             TBRole.Text = AppData.CurrentUser.Positions.PositionName;
 
-            LBMyTasks.ItemsSource = AppData.db.TaskNames.ToList().Where(c => c.Author == AppData.CurrentUser.ID).ToList();
+            if (AppData.CurrentUser.Position == 3)
+            {
+                List<TaskNames> currentTasks = new List<TaskNames>();
+                foreach (var item in AppData.db.CompletedTaskUser.ToList().Where(c => c.UserID == AppData.CurrentUser.ID).ToList())
+                    currentTasks.Add(AppData.db.TaskNames.ToList().Where(c => c.ID == item.CompletedTaskID && item.UserID == AppData.CurrentUser.ID).First());
+                LBMyTasks.ItemsSource = currentTasks;
+            }
+            else
+                LBMyTasks.ItemsSource = AppData.db.TaskNames.ToList().Where(c => c.Author == AppData.CurrentUser.ID).ToList();
+
         }
     }
 }

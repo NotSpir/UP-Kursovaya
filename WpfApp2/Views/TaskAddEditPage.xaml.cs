@@ -49,7 +49,7 @@ namespace WpfApp2.Views
 
             var repeatName = AppData.db.TaskNames.FirstOrDefault(u => u.TaskName == tasks.TaskName && u.ID != tasks.ID);
             if (repeatName != null)
-                errors.AppendLine("Данная почта занята");
+                errors.AppendLine("Данное название занято");
 
             if (errors.Length > 0)
             {

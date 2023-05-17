@@ -36,11 +36,24 @@ namespace WpfApp2
             {
                 AppData.CurrentUser = AppData.db.Users.FirstOrDefault(u => u.email == currentMail && u.Password == currentPassword);
                 if (AppData.CurrentUser.Position == 1)
-                    MainFrame.Navigate(new ShopPage());
+                {
+                    MenuPersonal.Visibility = Visibility.Visible;
+                    MenuEdit.Visibility = Visibility.Visible;
+                }
                 if (AppData.CurrentUser.Position == 2)
-                    MainFrame.Navigate(new ShopPage());
+                {
+                    MenuPersonal.Visibility = Visibility.Visible;
+                    MenuEdit.Visibility = Visibility.Visible;
+                    AdminItem1.Visibility = Visibility.Collapsed;
+                    AdminItem2.Visibility = Visibility.Collapsed;
+                    AdminItem3.Visibility = Visibility.Collapsed;
+                    AdminItem4.Visibility = Visibility.Collapsed;
+                }
                 if (AppData.CurrentUser.Position == 3)
-                    MainFrame.Navigate(new ShopPage());
+                {
+                    MenuPersonal.Visibility = Visibility.Visible;
+                    MenuEdit.Visibility = Visibility.Collapsed;
+                }
             }
             else
             {
@@ -49,6 +62,7 @@ namespace WpfApp2
             }
             
             AppData.MainFrame = MainFrame;
+            AppData.MainFrame.Navigate(new ShopPage());
         }
 
         private void MainFrame_ContentLoaded(object sender, EventArgs e)
@@ -109,12 +123,17 @@ namespace WpfApp2
 
         private void CheckAllTaskBases(object sender, RoutedEventArgs e)
         {
-
+            AppData.MainFrame.Navigate(new TaskBanksPage());
         }
 
         private void OpenPersonalCabinet(object sender, RoutedEventArgs e)
         {
             AppData.MainFrame.Navigate(new PersonalCabinetPage());
+        }
+
+        private void GoToMainPage(object sender, RoutedEventArgs e)
+        {
+            AppData.MainFrame.Navigate(new ShopPage());
         }
     }
 }

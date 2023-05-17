@@ -30,6 +30,9 @@
                     <MenuItem Foreground="Black" Name="AdminItem4" Click="CheckAllTaskBases" Header="Просмотреть все банки заданий"/>
                 </MenuItem>
 
+                <MenuItem Foreground="White" Name="MenuMainPage" Click="GoToMainPage" Header="Главная страница" BorderBrush="White" BorderThickness="1px" />
+
+                <MenuItem Foreground="White" Click="CheckAllTaskBases" Header="Коллекции заданий" BorderBrush="White" BorderThickness="1px" />
             </Menu>
             <TextBlock Text="Банк заданий" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24pt" VerticalAlignment="Center" Margin="0 20 0 0" Foreground="White"/>
 

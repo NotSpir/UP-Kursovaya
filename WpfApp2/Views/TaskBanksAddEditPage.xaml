@@ -9,6 +9,91 @@
       Title="TaskBanksAddEditPage">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <Grid Grid.Column="1" HorizontalAlignment="Stretch" Width="auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" ></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Background="#242424" Width="auto" HorizontalAlignment="Stretch">
+
+                <StackPanel Grid.Row="0" HorizontalAlignment="Left">
+
+                    <TextBlock Text="Введите название для поиска:" Width="175" TextAlignment="Left" Foreground="White" ></TextBlock>
+                    <TextBox Width="225" Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" ></TextBox>
+                    <TextBlock Text="Выберите тип:" Width="175" TextAlignment="Right" Foreground="White"></TextBlock>
+                    <ComboBox Width="225" Name="ComboType" DisplayMemberPath="DisciplineName" SelectionChanged="ComboType_SelectionChanged">
+                        <ComboBox.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Color="#FFF0F0F0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ComboBox.Background>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+
+            <ListView HorizontalAlignment="Stretch" Grid.Row="1" Name="LViewTasks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Left" Background="#242424" Foreground="Black">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="BorderBrush" Value="DeepSkyBlue" />
+                        <Setter Property="BorderThickness" Value="0,2,0,2" />
+                        <Setter Property="Width" Value="auto" />
+                        <Setter Property="Background" Value="#cccccc" />
+                        <Setter Property="HorizontalAlignment" Value="Stretch" />
+                        <EventSetter Event="MouseLeftButtonUp" Handler="ListViewItem_LeftMouseButtonUp" />
+
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Color}" Value="True">
+                                <Setter Property="Background" Value="LimeGreen"/>
+                            </DataTrigger >
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="20" Width="auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{Binding TaskName}" VerticalAlignment="Center"  TextAlignment="Left" Width="auto" TextWrapping="Wrap"
+                                   HorizontalAlignment="Left" Margin="0 5 0 5" FontSize="26" Grid.Row="0"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Column="0" Width="auto" Height="auto" Background="#242424">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="Название банка" Foreground="White"></TextBlock>
+                <TextBox Text="{Binding BankName}" TextWrapping="WrapWithOverflow"></TextBox>
+                <Button Height="25" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"
+                        Background="Black" Foreground="White" BorderBrush="Green" BorderThickness="2px"/>
+
+                <ListBox Width="auto" HorizontalAlignment="Center" Name="LBTasks"
+                                        BorderBrush="ForestGreen" ItemsSource="{Binding TaskList}" BorderThickness="1px" Background="Azure">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="Azure" Width="auto" HorizontalAlignment="Stretch">
+                                <TextBlock HorizontalAlignment="Left" TextAlignment="Left" Text="{Binding TaskName}" FontSize="14pt" TextWrapping="Wrap"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </Grid>
         
     </Grid>
 </Page>

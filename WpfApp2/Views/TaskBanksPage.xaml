@@ -9,6 +9,69 @@
       Title="TaskBanksPage">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" ></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Background="#242424" Height="80px">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Text="Введите название для поиска:" Width="175" TextAlignment="Right" Foreground="White" ></TextBlock>
+                <TextBox Width="225" Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" ></TextBox>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="Black" Foreground="White" 
+                        BorderBrush="Green" BorderThickness="2px" Visibility="Hidden" Margin="5 5 5 5"></Button>
+                <Button Content="Удалить" Name="BtnDelete" Click="BtnDelete_Click" Width="100px" Foreground="White" 
+                        BorderThickness="2px" Background="Black" BorderBrush="Red" Visibility="Hidden" Margin="5 5 5 5" >
+                </Button>
+            </StackPanel>
+        </Grid>
         
+        <ListView Grid.Row="1" Name="LViewBanks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="#242424" Foreground="Black">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="BorderBrush" Value="DeepSkyBlue" />
+                    <Setter Property="BorderThickness" Value="0,2,0,2" />
+                    <Setter Property="Width" Value="1000px" />
+                    <Setter Property="Background" Value="#cccccc" />
+                    <EventSetter Event="MouseRightButtonUp" Handler="ListViewItem_MouseRightButtonUp" />
+
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="20" Width="1000">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="70"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Text="{Binding BankName}" VerticalAlignment="Center"  TextAlignment="Center" Width="auto" TextWrapping="Wrap"
+                                   HorizontalAlignment="Center" Margin="5 5" FontSize="26" Grid.Row="0"></TextBlock>
+
+                        <ListBox Grid.Row="1" Width="auto" HorizontalAlignment="Center" Name="LBTasks"
+                                        BorderBrush="ForestGreen" ItemsSource="{Binding TaskList}" BorderThickness="3px" Background="Black">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="Azure" Width="590" HorizontalAlignment="Center">
+                                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Text="{Binding TaskName}" FontSize="14pt"></TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        
+                        <Button HorizontalAlignment="Center" Grid.Row="2" Content="Word" Name="BtnWord" Click="BtnWord_Click" Width="100px" Height="50px" 
+                                Background="Black" Foreground="White" BorderBrush="SkyBlue" BorderThickness="2px"></Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
