@@ -21,6 +21,10 @@
                 <TextBox Text="{Binding CompletionTime}" FontSize="16"/>
             <Label Foreground="White" FontSize="16" Padding="0">Дисциплина</Label>
                 <ComboBox SelectedItem="{Binding DisciplineID}" x:Name="ComboDisc" DisplayMemberPath="DisciplineName"></ComboBox>
+            <TextBlock Foreground="White" Text="Введите название для документа" FontSize="16"/>
+                <TextBox Name="wordName" Text="" FontSize="16"/>
+            <Button Height="25" Margin="5" Content="Добавить свой документ Word" Click="BtnAddWord_Click" FontSize="13"
+                        Background="Black" Foreground="White" BorderBrush="LightSkyBlue" BorderThickness="2px"/>
                 <Button Height="25" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"
                         Background="Black" Foreground="White" BorderBrush="Green" BorderThickness="2px"/>
         </StackPanel>

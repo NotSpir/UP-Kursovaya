@@ -64,6 +64,17 @@ namespace WpfApp2.Views
 
             Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
             var dataForWord = (sender as Button).DataContext as TaskBanks;
+
+            Word.Paragraph oPar1;
+            oPar1 = oDoc.Content.Paragraphs.Add(ref oMissing);
+            oPar1.Range.Text = dataForWord.BankName;
+            oPar1.Range.Font.Bold = 1;
+            oPar1.Range.Font.Name = "Times New Roman";
+            oPar1.Range.Font.Size = 36;
+            oPar1.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            oPar1.Format.SpaceAfter = 24;    //24 pt spacing after paragraph.
+            oPar1.Range.InsertParagraphAfter();
+
             foreach (var item in dataForWord.TaskList)
             {
                 string textName = item.TaskName;

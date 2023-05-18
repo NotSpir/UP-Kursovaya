@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 using WpfApp2.Model;
 
 namespace WpfApp2.Views
@@ -75,6 +76,33 @@ namespace WpfApp2.Views
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void BtnAddWord_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.FileName = "Документ"; // Default file name
+            dialog.DefaultExt = ".docx"; // Default file extension
+            dialog.Filter = "Text documents (.docx)|*.docx"; // Filter files by extension
+
+            // Show open file dialog box
+            bool? result = dialog.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                // Open document
+                string fileOrigName = dialog.FileName;
+                string actualFileName = $"{wordName.Text}.docx";
+                //Замените абсолютный путь на относительный, мне лень искать нормальный
+                string destFileName = $"C:\\Users\\SpiriumPC\\Downloads\\WpfApp2\\WpfApp2\\bin\\{wordName.Text}.docx";
+                File.Copy(fileOrigName, destFileName);
+                MessageBox.Show("Файл успешно добавлен");
+                wordName.Text = actualFileName;
+                tasks.WordVersion = destFileName;
+            }
+
+
         }
     }
 }

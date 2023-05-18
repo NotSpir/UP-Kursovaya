@@ -22,8 +22,6 @@
                 </MenuItem>
 
                 <MenuItem BorderBrush="White" BorderThickness="1px" Name="MenuEdit" Header="Данные">
-                    <MenuItem Foreground="Black" Name="TeachItem1" Click="AddNewTask" Header="Добавить новое задание" />
-                    <MenuItem Foreground="Black" Name="TeachItem2" Click="AddNewBase" Header="Добавить новый банк" />
                     <MenuItem Foreground="Black" Name="AdminItem1" Click="CheckUsers" Header="Просмотреть пользователей"/>
                     <MenuItem Foreground="Black" Name="AdminItem2" Click="CheckDisciplines" Header="Просмотреть дисциплины" />
                     <MenuItem Foreground="Black" Name="AdminItem3" Click="CheckAllTasks" Header="Просмотреть все задания"/>

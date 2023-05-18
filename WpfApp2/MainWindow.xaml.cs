@@ -34,7 +34,9 @@ namespace WpfApp2
             } catch { }
             if (AppData.db.Users.FirstOrDefault(u => u.email == currentMail && u.Password == currentPassword) != null)
             {
-                AppData.CurrentUser = AppData.db.Users.FirstOrDefault(u => u.email == currentMail && u.Password == currentPassword);
+                AppData.CurrentUser = AppData.db.Users.Where(p => p.email == currentMail && p.Password == currentPassword)
+                .AsEnumerable()
+                .FirstOrDefault(p => p.email == currentMail && p.Password == currentPassword);
                 if (AppData.CurrentUser.Position == 1)
                 {
                     MenuPersonal.Visibility = Visibility.Visible;
@@ -59,6 +61,7 @@ namespace WpfApp2
             {
                 MainFrame.Navigate(new SignInPage());
                 MenuPersonal.Visibility = Visibility.Hidden;
+                return;
             }
             
             AppData.MainFrame = MainFrame;
@@ -94,16 +97,6 @@ namespace WpfApp2
             newWindow.Show();
             
             AppData.MainFrame.Navigate(new SignInPage());
-        }
-
-        private void AddNewTask(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddNewBase(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void CheckUsers(object sender, RoutedEventArgs e)

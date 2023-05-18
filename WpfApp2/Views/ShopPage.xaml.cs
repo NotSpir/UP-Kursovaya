@@ -24,7 +24,11 @@ namespace WpfApp2.Views
     /// </summary>
     public partial class ShopPage : Page
     {
+        private int PagesCount;
+        private int NumberOfPage = 0;
+        private int maxItemShow = 5;
         List<TaskNames> currentTasks = AppData.db.TaskNames.ToList();
+        Discipline discVal = new Discipline();
         public ShopPage()
         {
             InitializeComponent();
@@ -34,8 +38,9 @@ namespace WpfApp2.Views
             {
                 DisciplineName = "Любая дисциплина"
             });
-            ComboType.ItemsSource = allTypes;
-            ComboType.SelectedIndex = 0;
+
+            LBDisciplines.ItemsSource = allTypes;
+            LBDisciplines.SelectedIndex = 0;
 
             if (AppData.CurrentUser.Position == 1)
             {
@@ -43,20 +48,23 @@ namespace WpfApp2.Views
                 BtnAdd.Visibility = Visibility.Visible;
             }
 
-            LViewTasks.ItemsSource = currentTasks;
+            PagesCount = currentTasks.Count / maxItemShow;
+            CheckPages();
+            LViewTasks.ItemsSource = currentTasks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
         }
         private void UpdateShop()
         {
             currentTasks = AppData.db.TaskNames.ToList();
-            if (ComboType.SelectedIndex != 0)
-                currentTasks = currentTasks.Where(c => c.Discipline == ComboType.SelectedValue).ToList();
+            if (discVal.ID != 0)
+                currentTasks = currentTasks.Where(c => c.DisciplineID == discVal.ID).ToList();
 
             currentTasks = currentTasks.Where(c => c.TaskName.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
 
             //LViewTasks.ItemsSource = currentServices.OrderBy(p => p.Price).ToList();
 
-            LViewTasks.ItemsSource = currentTasks;
-            
+            PagesCount = currentTasks.Count / maxItemShow;
+            CheckPages();
+            LViewTasks.ItemsSource = currentTasks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -214,5 +222,52 @@ namespace WpfApp2.Views
             }
         }
 
+        private void ListBoxItem_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var disc = (sender as ListBoxItem).DataContext as Discipline;
+            discVal = disc;
+            UpdateShop();
+        }
+
+        private void BtnPagePrev_Click(object sender, RoutedEventArgs e)
+        {
+            if (NumberOfPage > 0)
+            {
+                NumberOfPage--;
+                TBCurrentPage.Text = (NumberOfPage + 1).ToString();
+                UpdateShop();
+            }
+        }
+
+        private void BtnPageNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (NumberOfPage < PagesCount)
+            {
+                NumberOfPage++;
+                TBCurrentPage.Text = (NumberOfPage + 1).ToString();
+                CheckPages();
+                UpdateShop();
+            }
+        }
+
+        private void CheckPages()
+        {
+            if (NumberOfPage > 0)
+            {
+                TBPrevPage.Text = (NumberOfPage).ToString();
+                TBPrevPage.Visibility = Visibility.Visible;
+            } else
+            {
+                TBPrevPage.Visibility = Visibility.Collapsed;
+            }
+            if (NumberOfPage < PagesCount)
+            {
+                TBNextPage.Text = (NumberOfPage+2).ToString();
+                TBNextPage.Visibility = Visibility.Visible;
+            } else
+            {
+                TBNextPage.Visibility = Visibility.Collapsed;
+            }
+        }
     }
     }

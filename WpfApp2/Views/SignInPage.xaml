@@ -13,8 +13,8 @@
             <TextBlock Foreground="White" Text="Логин" FontSize="16"/>
             <TextBox Name="TxbMail" FontSize="16"/>
             <TextBlock Foreground="White" Text="Пароль" FontSize="16"/>
-            <TextBox Name="TxbPassword" FontSize="16"/>
-
+            <PasswordBox Name="TxbPassword" FontSize="16"/>
+            
             <Button Height="20" Margin="5" Content="Войти" Click="BtnSignIn_Click" FontSize="13"
                     Background="Black" Foreground="White" BorderBrush="Azure" BorderThickness="1px"/>
             <Button Height="20" Margin="5" Content="Зарегистрироваться" Click="BtnRegister_Click" FontSize="13"

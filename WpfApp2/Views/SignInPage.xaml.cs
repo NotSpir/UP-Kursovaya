@@ -32,7 +32,7 @@ namespace WpfApp2.Views
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(TxbMail.Text))
                 errors.AppendLine("Укажите почту");
-            if (string.IsNullOrWhiteSpace(TxbPassword.Text))
+            if (string.IsNullOrWhiteSpace(TxbPassword.Password))
                 errors.AppendLine("Укажите пароль");
 
             if (errors.Length > 0)
@@ -41,7 +41,9 @@ namespace WpfApp2.Views
                 return;
             }
 
-            AppData.CurrentUser = AppData.db.Users.FirstOrDefault(u => u.email == TxbMail.Text && u.Password == TxbPassword.Text);
+            AppData.CurrentUser = AppData.db.Users.Where(p => p.email == TxbMail.Text && p.Password == TxbPassword.Password)
+                .AsEnumerable()
+                .FirstOrDefault(p => p.email == TxbMail.Text && p.Password == TxbPassword.Password);
 
             if(AppData.CurrentUser != null)
             {
