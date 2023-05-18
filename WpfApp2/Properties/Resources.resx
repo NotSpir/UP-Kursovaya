@@ -118,40 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Access_Virus_C" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Views\Resources\Access_Virus_C.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Alesis_VI61" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Views\Resources\Alesis_VI61.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Boss_BD_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Views\Resources\Boss_BD-2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Boss_Katana" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Views\Resources\Boss_Katana.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Views\Resources\logo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Marshall_MG15CFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Views\Resources\Marshall_MG15CFX.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Matshall_MS_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Views\Resources\Matshall_MS-4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="nopic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Views\Resources\nopic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Roland_EV_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Views\Resources\Roland_EV-5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Yamaha_A3R_TBL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Views\Resources\Yamaha_A3R_TBL.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Yamaha_BB234BL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Views\Resources\Yamaha_BB234BL.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Yamaha_DTP532" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Views\Resources\Yamaha_DTP532.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -33,6 +33,7 @@
                 <MenuItem Foreground="White" Click="CheckAllTaskBases" Header="Коллекции заданий" BorderBrush="White" BorderThickness="1px" />
             </Menu>
             <TextBlock Text="Банк заданий" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24pt" VerticalAlignment="Center" Margin="0 20 0 0" Foreground="White"/>
+            <Image HorizontalAlignment="Left" Height="69" Margin="20,16,0,0" VerticalAlignment="Top" Width="94" Source="/img/logo.png"/>
 
         </Grid>
         <Grid Grid.Row="2" Background="Black" />

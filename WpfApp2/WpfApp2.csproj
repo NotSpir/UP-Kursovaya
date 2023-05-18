@@ -292,6 +292,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="img\logo.png" />
     <Content Include="Model\InstrModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>InstrModel.edmx</DependentUpon>
@@ -312,18 +313,7 @@
       <DependentUpon>TasksBanks.edmx</DependentUpon>
       <LastGenOutput>TasksBanks.cs</LastGenOutput>
     </Content>
-    <None Include="Views\Resources\Yamaha_DTP532.jpg" />
-    <None Include="Views\Resources\Yamaha_BB234BL.jpg" />
-    <None Include="Views\Resources\Yamaha_A3R_TBL.jpg" />
-    <None Include="Views\Resources\Roland_EV-5.jpg" />
-    <None Include="Views\Resources\nopic.png" />
-    <None Include="Views\Resources\Matshall_MS-4.jpg" />
-    <None Include="Views\Resources\Marshall_MG15CFX.jpg" />
-    <None Include="Views\Resources\logo1.png" />
-    <None Include="Views\Resources\Boss_Katana.jpg" />
-    <None Include="Views\Resources\Boss_BD-2.jpg" />
-    <None Include="Views\Resources\Alesis_VI61.png" />
-    <None Include="Views\Resources\Access_Virus_C.jpg" />
+    <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
