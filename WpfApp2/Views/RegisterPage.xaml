@@ -11,17 +11,17 @@
     <Grid Background="Black">
         <StackPanel Height="400" Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="300">
             <TextBlock Text="Имя" FontSize="16" Width="200" Foreground="White"/>
-            <TextBox Text="{Binding FirstName}" FontSize="16" Width="200" />
+            <TextBox Text="{Binding FirstName}" FontSize="16" Width="200" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox"/>
             <TextBlock Text="Фамилия" FontSize="16" Width="200" Foreground="White"/>
-            <TextBox Text="{Binding Surname}" FontSize="16" Width="200"/>
+            <TextBox Text="{Binding Surname}" FontSize="16" Width="200" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox"/>
             <TextBlock Text="Отчество" FontSize="16" Width="200" Foreground="White"/>
-            <TextBox Text="{Binding Patronymic}" FontSize="16" Width="200"/>
+            <TextBox Text="{Binding Patronymic}" FontSize="16" Width="200" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox"/>
             <TextBlock Text="Почта" FontSize="16" Width="200" Foreground="White"/>
-            <TextBox Text="{Binding email}" FontSize="16" Width="200"/>
+            <TextBox Text="{Binding email}" FontSize="16" Width="200" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox"/>
             <TextBlock Text="Дата рождения" FontSize="16" Width="200" Foreground="White"/>
             <DatePicker Name="DPDateDel" DisplayDate="{Binding Birthdate}" Width="200"></DatePicker>
             <TextBlock Text="Пароль" FontSize="16" Width="200" Foreground="White"/>
-            <TextBox Text="{Binding Password}" FontSize="16" Width="200"/>
+            <TextBox Text="{Binding Password}" FontSize="16" Width="200" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox"/>
 
             <Button Height="35" Margin="5" Content="Создать" Click="CreateBtn_Click" FontSize="13" Width="200" Background="Black" Foreground="White" BorderBrush="LightGreen" BorderThickness="2"/>
             <Button Height="35" Margin="5" Content="Есть учетная запись? Войти" Click="GoSingInBtn_Click" FontSize="13" Width="200" Background="Black" Foreground="White" BorderBrush="SkyBlue" BorderThickness="2"/>

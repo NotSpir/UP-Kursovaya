@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using WpfApp2.Model;
+using System.Text.RegularExpressions;
 
 namespace WpfApp2.Views
 {
@@ -127,10 +128,60 @@ namespace WpfApp2.Views
 
         private bool IsCorrectName(string fileName)
         {
-            if (fileName.Contains('<') || fileName.Contains('>') || fileName.Contains(':') || fileName.Contains('"') || fileName.Contains('/') ||
-                fileName.Contains("\\") || fileName.Contains('|') || fileName.Contains('?') || fileName.Contains('*'))
+            if (fileName.Contains('"'))
                 return false;
             return true;
         }
+
+        private static readonly Regex regexNums = new Regex("[^0-9]+");
+        private static readonly Regex regexForbidden = new Regex("[^<>:/\\|?*]+");
+        private static bool IsTextAllowed(string text)
+        {
+            return !regexNums.IsMatch(text);
+        }
+
+        private void TextBoxNumsPasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(String)))
+            {
+                String text = (String)e.DataObject.GetData(typeof(String));
+                if (!IsTextAllowed(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+
+        private void CharValidationNumsTextBox(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = regexNums.IsMatch(e.Text);
+        }
+
+        private void TextBoxWordPasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(String)))
+            {
+                String text = (String)e.DataObject.GetData(typeof(String));
+                if (regexForbidden.IsMatch(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+
+        private void CharValidationWordTextBox(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !regexForbidden.IsMatch(e.Text);
+        }
+
+
     }
 }

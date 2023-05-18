@@ -11,17 +11,17 @@
     <Grid Background="Black">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
             <TextBlock Foreground="White" Text="Имя" FontSize="16"/>
-            <TextBox Text="{Binding FirstName}" FontSize="16"/>
+            <TextBox Text="{Binding FirstName}" FontSize="16" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox"/>
             <TextBlock Foreground="White" Text="Фамилия" FontSize="16"/>
-            <TextBox Text="{Binding Surname}" FontSize="16"/>
+            <TextBox Text="{Binding Surname}" FontSize="16" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox"/>
             <TextBlock Foreground="White" Text="Отчество" FontSize="16"/>
-            <TextBox Text="{Binding Patronymic}" FontSize="16"/>
+            <TextBox Text="{Binding Patronymic}" FontSize="16" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox"/>
             <TextBlock Foreground="White" Text="Дата рождения" FontSize="16"/>
             <DatePicker Name="DPDateDel" SelectedDate="{Binding Birthdate}"></DatePicker>
             <TextBlock Foreground="White" Text="Почта" FontSize="16"/>
-            <TextBox Text="{Binding email}" FontSize="16"/>
+            <TextBox Text="{Binding email}" FontSize="16" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox"/>
             <TextBlock Foreground="White" Text="Пароль" FontSize="16"/>
-            <TextBox Text="{Binding Password}" FontSize="16"/>
+            <TextBox Text="{Binding Password}" FontSize="16" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox"/>
 
             <Button Height="25" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"
                     Background="Black" Foreground="White" BorderBrush="Green" BorderThickness="2px"/>

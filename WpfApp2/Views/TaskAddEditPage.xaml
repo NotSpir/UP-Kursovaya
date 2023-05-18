@@ -18,11 +18,11 @@
                 <TextBlock Foreground="White" Text="Название задания" FontSize="16"/>
                 <TextBox Text="{Binding TaskName}" FontSize="16"/>
             <TextBlock Foreground="White" Text="Время выполнения (в минутах)" FontSize="16"/>
-                <TextBox Text="{Binding CompletionTime}" FontSize="16"/>
+            <TextBox Text="{Binding CompletionTime}" FontSize="16" DataObject.Pasting="TextBoxNumsPasting" PreviewTextInput="CharValidationNumsTextBox"/>
             <Label Foreground="White" FontSize="16" Padding="0">Дисциплина</Label>
                 <ComboBox SelectedItem="{Binding DisciplineID}" x:Name="ComboDisc" DisplayMemberPath="DisciplineName"></ComboBox>
             <TextBlock Foreground="White" Text="Введите название для документа" FontSize="16"/>
-                <TextBox Name="wordName" Text="" FontSize="16"/>
+            <TextBox Name="wordName" Text="" FontSize="16" DataObject.Pasting="TextBoxWordPasting" PreviewTextInput="CharValidationWordTextBox"/>
             <Button Height="35" Margin="5" Content="Добавить свой документ Word" Click="BtnAddWord_Click" FontSize="13"
                         Background="Black" Foreground="White" BorderBrush="LightSkyBlue" BorderThickness="2px"/>
                 <Button Height="35" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"

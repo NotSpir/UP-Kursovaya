@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -71,5 +72,55 @@ namespace WpfApp2.Views
         {
             NavigationService.GoBack();
         }
+
+        //Начало функций для проверок ввода
+        private static readonly Regex _regex = new Regex("[^0-9@A-Z.a-z]+");
+        private static readonly Regex regexRu = new Regex("[^А-Яа-я]+");
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
+
+        private void TextBoxPasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(String)))
+            {
+                String text = (String)e.DataObject.GetData(typeof(String));
+                if (!IsTextAllowed(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+
+        private void CharValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = _regex.IsMatch(e.Text);
+        }
+
+        private void TextBoxRuPasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(String)))
+            {
+                String text = (String)e.DataObject.GetData(typeof(String));
+                if (regexRu.IsMatch(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+        private void CharValidationRuTextBox(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = regexRu.IsMatch(e.Text);
+        }
+        //Конец функций для проверок ввода
     }
 }
