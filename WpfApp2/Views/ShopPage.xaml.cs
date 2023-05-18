@@ -101,7 +101,7 @@ namespace WpfApp2.Views
 
         private void BtnWord_Click(object sender, RoutedEventArgs e)
         {
-                //Report 1 №п/п; Вид сырья; Сумма, внизу Итого:
+                
                 object oMissing = System.Reflection.Missing.Value;
                 object oEndOfDoc = "\\endofdoc"; // \endofdoc is a predefined bookmark 
 
