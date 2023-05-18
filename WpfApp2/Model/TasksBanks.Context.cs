@@ -13,10 +13,10 @@ namespace WpfApp2.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TaskBankEntitiess : DbContext
+    public partial class TasksBanksEntities : DbContext
     {
-        public TaskBankEntitiess()
-            : base("name=TaskBankEntitiess")
+        public TasksBanksEntities()
+            : base("name=TasksBanksEntities")
         {
         }
     

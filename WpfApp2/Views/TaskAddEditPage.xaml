@@ -8,10 +8,10 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TaskAddEditPage">
 
-    <Grid Background="#242424">
+    <Grid Background="Black">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
@@ -23,14 +23,14 @@
                 <ComboBox SelectedItem="{Binding DisciplineID}" x:Name="ComboDisc" DisplayMemberPath="DisciplineName"></ComboBox>
             <TextBlock Foreground="White" Text="Введите название для документа" FontSize="16"/>
                 <TextBox Name="wordName" Text="" FontSize="16"/>
-            <Button Height="25" Margin="5" Content="Добавить свой документ Word" Click="BtnAddWord_Click" FontSize="13"
+            <Button Height="35" Margin="5" Content="Добавить свой документ Word" Click="BtnAddWord_Click" FontSize="13"
                         Background="Black" Foreground="White" BorderBrush="LightSkyBlue" BorderThickness="2px"/>
-                <Button Height="25" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"
+                <Button Height="35" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"
                         Background="Black" Foreground="White" BorderBrush="Green" BorderThickness="2px"/>
         </StackPanel>
-        <StackPanel Grid.Column="1">
-            <TextBlock Text="Описание"></TextBlock>
-            <TextBox Height="400" Text="{Binding Description}" TextWrapping="WrapWithOverflow"></TextBox>
+        <StackPanel VerticalAlignment="Center" Grid.Column="1">
+            <TextBlock Height="20" Width="450" Text="Описание" Foreground="White"></TextBlock>
+            <TextBox Height="400" Width="450" Text="{Binding Description}" TextWrapping="WrapWithOverflow"></TextBox>
         </StackPanel>
         </Grid>
 </Page>

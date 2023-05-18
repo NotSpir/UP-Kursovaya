@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище TaskBankModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище TasksBanksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CompletedTaskUser">
           <Key>
             <PropertyRef Name="ID" />
@@ -51,7 +51,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TaskName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="CompletionTime" Type="int" />
+          <Property Name="CompletionTime" Type="int" Nullable="false" />
           <Property Name="DisciplineID" Type="int" Nullable="false" />
           <Property Name="Author" Type="int" Nullable="false" />
           <Property Name="WordVersion" Type="nvarchar(max)" />
@@ -80,7 +80,9 @@
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK_CompletedTaskUser_TaskNames">
-          <End Role="TaskNames" Type="Self.TaskNames" Multiplicity="1" />
+          <End Role="TaskNames" Type="Self.TaskNames" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CompletedTaskUser" Type="Self.CompletedTaskUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaskNames">
@@ -92,9 +94,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CompletedTaskUser_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="CompletedTaskUser" Type="Self.CompletedTaskUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -175,7 +175,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище TaskBankModelContainer">
+        <EntityContainer Name="Хранилище TasksBanksModelContainer">
           <EntitySet Name="CompletedTaskUser" EntityType="Self.CompletedTaskUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
@@ -217,7 +217,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TaskBankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TasksBanksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="CompletedTaskUser">
           <Key>
             <PropertyRef Name="ID" />
@@ -269,7 +269,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TaskName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CompletionTime" Type="Int32" />
+          <Property Name="CompletionTime" Type="Int32" Nullable="false" />
           <Property Name="DisciplineID" Type="Int32" Nullable="false" />
           <Property Name="Author" Type="Int32" Nullable="false" />
           <Property Name="WordVersion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -307,7 +307,9 @@
           <NavigationProperty Name="TaskNames" Relationship="Self.FK_TaskNames_Users" FromRole="Users" ToRole="TaskNames" />
         </EntityType>
         <Association Name="FK_CompletedTaskUser_TaskNames">
-          <End Role="TaskNames" Type="Self.TaskNames" Multiplicity="1" />
+          <End Role="TaskNames" Type="Self.TaskNames" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CompletedTaskUser" Type="Self.CompletedTaskUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaskNames">
@@ -319,9 +321,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CompletedTaskUser_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="CompletedTaskUser" Type="Self.CompletedTaskUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -402,7 +402,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TaskBankEntitiess" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TasksBanksEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CompletedTaskUser" EntityType="Self.CompletedTaskUser" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" />
           <EntitySet Name="Positions" EntityType="Self.Positions" />
@@ -445,9 +445,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище TaskBankModelContainer" CdmEntityContainer="TaskBankEntitiess">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TasksBanksModelContainer" CdmEntityContainer="TasksBanksEntities">
           <EntitySetMapping Name="CompletedTaskUser">
-            <EntityTypeMapping TypeName="TaskBankModel.CompletedTaskUser">
+            <EntityTypeMapping TypeName="TasksBanksModel.CompletedTaskUser">
               <MappingFragment StoreEntitySet="CompletedTaskUser">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -456,7 +456,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Discipline">
-            <EntityTypeMapping TypeName="TaskBankModel.Discipline">
+            <EntityTypeMapping TypeName="TasksBanksModel.Discipline">
               <MappingFragment StoreEntitySet="Discipline">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DisciplineName" ColumnName="DisciplineName" />
@@ -464,7 +464,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Positions">
-            <EntityTypeMapping TypeName="TaskBankModel.Positions">
+            <EntityTypeMapping TypeName="TasksBanksModel.Positions">
               <MappingFragment StoreEntitySet="Positions">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PositionName" ColumnName="PositionName" />
@@ -472,7 +472,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="TaskBankModel.sysdiagrams">
+            <EntityTypeMapping TypeName="TasksBanksModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -483,7 +483,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TaskBanks">
-            <EntityTypeMapping TypeName="TaskBankModel.TaskBanks">
+            <EntityTypeMapping TypeName="TasksBanksModel.TaskBanks">
               <MappingFragment StoreEntitySet="TaskBanks">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="BankName" ColumnName="BankName" />
@@ -491,7 +491,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TaskNames">
-            <EntityTypeMapping TypeName="TaskBankModel.TaskNames">
+            <EntityTypeMapping TypeName="TasksBanksModel.TaskNames">
               <MappingFragment StoreEntitySet="TaskNames">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TaskName" ColumnName="TaskName" />
@@ -504,7 +504,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TasksIBanks">
-            <EntityTypeMapping TypeName="TaskBankModel.TasksIBanks">
+            <EntityTypeMapping TypeName="TasksBanksModel.TasksIBanks">
               <MappingFragment StoreEntitySet="TasksIBanks">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TaskID" ColumnName="TaskID" />
@@ -515,7 +515,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="TaskBankModel.Users">
+            <EntityTypeMapping TypeName="TasksBanksModel.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />

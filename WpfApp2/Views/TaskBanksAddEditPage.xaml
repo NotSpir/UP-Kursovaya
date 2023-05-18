@@ -17,10 +17,10 @@
 
         <Grid Grid.Column="1" HorizontalAlignment="Stretch" Width="auto">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" ></RowDefinition>
+                <RowDefinition Height="69" ></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid Background="#242424" Width="auto" HorizontalAlignment="Stretch">
+            <Grid Background="#242424" Width="auto" HorizontalAlignment="Stretch" Height="auto">
 
                 <StackPanel Grid.Row="0" HorizontalAlignment="Left">
 
@@ -38,7 +38,7 @@
                 </StackPanel>
             </Grid>
 
-            <ListView HorizontalAlignment="Stretch" Grid.Row="1" Name="LViewTasks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Left" Background="#242424" Foreground="Black">
+            <ListView HorizontalAlignment="Stretch" Grid.Row="1" Name="LViewTasks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Left" Background="Black" Foreground="Black">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" HorizontalAlignment="Center"></WrapPanel>
@@ -46,18 +46,12 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
-                        <Setter Property="BorderBrush" Value="DeepSkyBlue" />
+                        <Setter Property="BorderBrush" Value="Blue" />
                         <Setter Property="BorderThickness" Value="0,2,0,2" />
                         <Setter Property="Width" Value="auto" />
-                        <Setter Property="Background" Value="#cccccc" />
+                        <Setter Property="Background" Value="White" />
                         <Setter Property="HorizontalAlignment" Value="Stretch" />
                         <EventSetter Event="MouseLeftButtonUp" Handler="ListViewItem_LeftMouseButtonUp" />
-
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Path=Color}" Value="True">
-                                <Setter Property="Background" Value="LimeGreen"/>
-                            </DataTrigger >
-                        </Style.Triggers>
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
@@ -75,8 +69,14 @@
             </ListView>
         </Grid>
 
-        <Grid Grid.Column="0" Width="auto" Height="auto" Background="#242424">
-            <StackPanel VerticalAlignment="Center">
+        <Grid Grid.Column="0" Width="auto" Height="auto" Background="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="69" ></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="#242424" Height="auto"/>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
                 <TextBlock Text="Название банка" Foreground="White"></TextBlock>
                 <TextBox Text="{Binding BankName}" TextWrapping="WrapWithOverflow"></TextBox>
                 <Button Height="25" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"

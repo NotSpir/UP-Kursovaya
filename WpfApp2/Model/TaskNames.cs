@@ -25,12 +25,11 @@ namespace WpfApp2.Model
         public int ID { get; set; }
         public string TaskName { get; set; }
         public string Description { get; set; }
-        public Nullable<int> CompletionTime { get; set; }
+        public int CompletionTime { get; set; }
         public int DisciplineID { get; set; }
         public int Author { get; set; }
         public string WordVersion { get; set; }
-        
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompletedTaskUser> CompletedTaskUser { get; set; }
         public virtual Discipline Discipline { get; set; }
@@ -38,17 +37,20 @@ namespace WpfApp2.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TasksIBanks> TasksIBanks { get; set; }
 
-        public bool Color { get
+        public bool Color
+        {
+            get
             {
                 var newComplete = new CompletedTaskUser();
                 newComplete.UserID = AppData.CurrentUser.ID;
                 newComplete.CompletedTaskID = this.ID;
-                if (AppData.db.CompletedTaskUser.FirstOrDefault(u => u.UserID == newComplete.UserID && u.CompletedTaskID == newComplete.CompletedTaskID) != null) 
+                if (AppData.db.CompletedTaskUser.FirstOrDefault(u => u.UserID == newComplete.UserID && u.CompletedTaskID == newComplete.CompletedTaskID) != null)
                 {
                     return true;
-                } else  
-                return false;
-            } 
+                }
+                else
+                    return false;
+            }
         }
     }
 }

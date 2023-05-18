@@ -98,7 +98,7 @@ namespace WpfApp2.Views
             {
                 AppData.db.SaveChanges();
                 MessageBox.Show("Данные сохранены");
-                AppData.MainFrame.Navigate(new ShopPage());
+                AppData.MainFrame.Navigate(new TaskBanksPage());
             }
             catch (Exception ex)
             {

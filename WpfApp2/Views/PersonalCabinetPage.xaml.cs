@@ -43,5 +43,10 @@ namespace WpfApp2.Views
                 LBMyTasks.ItemsSource = AppData.db.TaskNames.ToList().Where(c => c.Author == AppData.CurrentUser.ID).ToList();
 
         }
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            AppData.MainFrame.Navigate(new UserSelfEditPage(AppData.CurrentUser));
+        }
     }
 }

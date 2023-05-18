@@ -20,17 +20,17 @@
             </StackPanel>
             
             <StackPanel Grid.Row="0" Margin="0 15" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button BorderThickness="2px" Background="Black" BorderBrush="Yellow" Height="30" Width="50" Foreground="White" Content="←" FontSize="20" Click="BtnPagePrev_Click"/>
+                <Button BorderThickness="2px" Background="Black" BorderBrush="Yellow" Height="35" Width="50" Foreground="White" Content="←" FontSize="20" Name="BtnPagePrev" Click="BtnPagePrev_Click"/>
                 <TextBlock Name="TBPrevPage" Background="Black" Visibility="Collapsed" Foreground="Gray" Grid.Column="0"  Margin=" 10 0" Grid.Row="0" Text="1" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Name="TBCurrentPage" Background="Black" Foreground="White" Grid.Column="0"  Margin=" 10 0" Grid.Row="0" Text="1" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Name="TBNextPage" Background="Black" Visibility="Collapsed" Foreground="Gray" Grid.Column="0"  Margin=" 10 0" Grid.Row="0" Text="1" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Button BorderThickness="2px" Background="Black" BorderBrush="Yellow" Height="30" Width="50" Content="→" Foreground="White" FontSize="20" Click="BtnPageNext_Click"/>
+                <Button BorderThickness="2px" Background="Black" BorderBrush="Yellow" Height="35" Width="50" Content="→" Foreground="White" FontSize="20" Name="BtnPageNext" Click="BtnPageNext_Click"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-                <Button Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="Black" Foreground="White" 
+                <Button Content="Добавить" Height="35" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="Black" Foreground="White" 
                         BorderBrush="Green" BorderThickness="2px" Visibility="Hidden" Margin="5 5 5 5"></Button>
-                <Button Content="Удалить" Name="BtnDelete" Click="BtnDelete_Click" Width="100px" Foreground="White" 
+                <Button Content="Удалить" Height="35" Name="BtnDelete" Click="BtnDelete_Click" Width="100px" Foreground="White" 
                         BorderThickness="2px" Background="Black" BorderBrush="Red" Visibility="Hidden" Margin="5 5 5 5" >
                 </Button>
         </StackPanel>
@@ -41,15 +41,15 @@
                 <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Width="auto" Grid.Column="0" HorizontalAlignment="Stretch">
-                <TextBlock Text="Дисциплины" HorizontalAlignment="Stretch" TextAlignment="Center" Foreground="Black" FontSize="14pt" Background="Transparent"/>
+            <StackPanel Background="Black" Width="auto" Grid.Column="0" HorizontalAlignment="Stretch">
+                <TextBlock Text="Дисциплины" HorizontalAlignment="Stretch" TextAlignment="Center" Foreground="White" FontSize="14pt" Background="Transparent"/>
                 <ListBox Width="auto" HorizontalAlignment="Stretch" Name="LBDisciplines"
-                                        BorderBrush="Azure" BorderThickness="3px" Background="Transparent">
+                                        BorderBrush="Azure" BorderThickness="3px" Background="White">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <EventSetter Event="MouseLeftButtonUp" Handler="ListBoxItem_MouseLeftButtonUp" />
                         <Setter Property="BorderBrush" Value="Black" />
-                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
                             <Setter Property="MaxWidth" Value="500" />
                             <Setter Property="BorderThickness" Value="0,2,0,2" />
                     </Style>
@@ -71,12 +71,12 @@
                         <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick" />
                         <Setter Property="BorderBrush" Value="DeepSkyBlue" />
                         <Setter Property="BorderThickness" Value="0,2,0,2" />
-                        <Setter Property="Background" Value="#cccccc" />
+                        <Setter Property="Background" Value="White" />
                         <Setter Property="Width" Value="1350" />
 
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Path=Color}" Value="True">
-                                <Setter Property="Background" Value="LimeGreen"/>
+                                <Setter Property="Background" Value="PaleGreen" />
                             </DataTrigger >
                         </Style.Triggers>
 

@@ -22,7 +22,5 @@ namespace WpfApp2.Model
     
         public virtual TaskBanks TaskBanks { get; set; }
         public virtual TaskNames TaskNames { get; set; }
-
-        
     }
 }

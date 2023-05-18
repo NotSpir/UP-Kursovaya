@@ -23,6 +23,8 @@ namespace WpfApp2.Views
     public partial class TaskAddEditPage : Page
     {
         private TaskNames tasks = new TaskNames();
+        string oldFile;
+        string newFile;
         public TaskAddEditPage(TaskNames selectedTask)
         {
             InitializeComponent();
@@ -30,6 +32,7 @@ namespace WpfApp2.Views
             {
                 tasks = selectedTask;
                 ComboDisc.SelectedItem = selectedTask.Discipline;
+                oldFile = selectedTask.WordVersion;
             }
             InitializeComponent();
             DataContext = tasks;
@@ -69,6 +72,12 @@ namespace WpfApp2.Views
                 tasks.Author = AppData.CurrentUser.ID;
                 tasks.DisciplineID = currentDisc.ID;
                 AppData.db.SaveChanges();
+                if (oldFile != null)
+                    if (tasks.WordVersion != oldFile)
+                    {
+                        File.Copy(newFile, tasks.WordVersion);
+                        File.Delete(oldFile);
+                    }
                 MessageBox.Show("Данные сохранены");
                 AppData.MainFrame.Navigate(new ShopPage());
             }
@@ -80,29 +89,48 @@ namespace WpfApp2.Views
 
         private void BtnAddWord_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.FileName = "Документ"; // Default file name
-            dialog.DefaultExt = ".docx"; // Default file extension
-            dialog.Filter = "Text documents (.docx)|*.docx"; // Filter files by extension
+            if (IsCorrectName(wordName.Text)) {
+                var dialog = new Microsoft.Win32.OpenFileDialog();
+                dialog.FileName = "Документ"; // Default file name
+                dialog.DefaultExt = ".docx"; // Default file extension
+                dialog.Filter = "Text documents (.docx)|*.docx"; // Filter files by extension
 
-            // Show open file dialog box
-            bool? result = dialog.ShowDialog();
+                // Show open file dialog box
+                bool? result = dialog.ShowDialog();
 
-            // Process open file dialog box results
-            if (result == true)
-            {
-                // Open document
-                string fileOrigName = dialog.FileName;
-                string actualFileName = $"{wordName.Text}.docx";
-                //Замените абсолютный путь на относительный, мне лень искать нормальный
-                string destFileName = $"C:\\Users\\SpiriumPC\\Downloads\\WpfApp2\\WpfApp2\\bin\\{wordName.Text}.docx";
-                File.Copy(fileOrigName, destFileName);
-                MessageBox.Show("Файл успешно добавлен");
-                wordName.Text = actualFileName;
-                tasks.WordVersion = destFileName;
-            }
+                // Process open file dialog box results
+                if (result == true)
+                {
+                    // Open document
+                    newFile = dialog.FileName;
+                    string actualFileName = $"{wordName.Text}.docx";
+                    if (oldFile != null)
+                    {
+                        if (MessageBox.Show("К данному заданию уже прикреплен файл. Вы уверены, что хотите его заменить?",
+                        "Предупреждение",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Warning) == MessageBoxResult.No)
+                        {
+                            return;
+                        }
+                    }
+                    //Замените абсолютный путь на относительный, мне лень искать нормальный
+                    string destFileName = $@"{wordName.Text}.docx";
+                    wordName.IsReadOnly = true;
+                    MessageBox.Show("Файл успешно добавлен");
+                    wordName.Text = actualFileName;
+                    tasks.WordVersion = destFileName;
+                }
+            } else MessageBox.Show("Данное название файла запрещено!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
+        }
 
+        private bool IsCorrectName(string fileName)
+        {
+            if (fileName.Contains('<') || fileName.Contains('>') || fileName.Contains(':') || fileName.Contains('"') || fileName.Contains('/') ||
+                fileName.Contains("\\") || fileName.Contains('|') || fileName.Contains('?') || fileName.Contains('*'))
+                return false;
+            return true;
         }
     }
 }

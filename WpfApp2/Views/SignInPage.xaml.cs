@@ -56,6 +56,7 @@ namespace WpfApp2.Views
                 MainWindow newWindow = new MainWindow();
                 Application.Current.MainWindow.Close();
                 Application.Current.MainWindow = newWindow;
+                AppData.MainFrame = newWindow.MainFrame;
                 newWindow.Show();
 
                 if (AppData.CurrentUser.Position == 1)

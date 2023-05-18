@@ -22,6 +22,9 @@ namespace WpfApp2.Views
     /// </summary>
     public partial class TaskBanksPage : Page
     {
+        private int PagesCount;
+        private int NumberOfPage = 0;
+        private int maxItemShow = 5;
         List<TaskBanks> currentBanks = AppData.db.TaskBanks.ToList();
         public TaskBanksPage()
         {
@@ -43,8 +46,9 @@ namespace WpfApp2.Views
                 }
                 item.TaskList = newTask;
             }
-            
-            LViewBanks.ItemsSource = currentBanks;
+            PagesCount = currentBanks.Count / maxItemShow;
+            CheckPages();
+            LViewBanks.ItemsSource = currentBanks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
         }
 
         private void BtnWord_Click(object sender, RoutedEventArgs e)
@@ -155,11 +159,11 @@ namespace WpfApp2.Views
                     AppData.db.TaskBanks.RemoveRange((IEnumerable<TaskBanks>)tasksForRemoving);
                     AppData.db.SaveChanges();
                     MessageBox.Show("Данные удалены!");
-                    LViewBanks.ItemsSource = AppData.db.TaskBanks.ToList();
+                    AppData.MainFrame.Navigate(new TaskBanksPage());
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message.ToString());
+                    MessageBox.Show(ex.Message.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -182,7 +186,9 @@ namespace WpfApp2.Views
 
             //LViewTasks.ItemsSource = currentServices.OrderBy(p => p.Price).ToList();
 
-            LViewBanks.ItemsSource = currentBanks;
+            PagesCount = (currentBanks.Count) / maxItemShow;
+            CheckPages();
+            LViewBanks.ItemsSource = currentBanks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
 
         }
 
@@ -191,6 +197,54 @@ namespace WpfApp2.Views
             if (AppData.CurrentUser.Position != 3 )
                 if (sender != null)
                     NavigationService.Navigate(new TaskBanksAddEditPage((sender as ListViewItem).DataContext as TaskBanks));
+        }
+
+        private void BtnPagePrev_Click(object sender, RoutedEventArgs e)
+        {
+            if (NumberOfPage > 0)
+            {
+                NumberOfPage--;
+                TBCurrentPage.Text = (NumberOfPage + 1).ToString();
+                CheckPages();
+                UpdateShop();
+            }
+        }
+
+        private void BtnPageNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (NumberOfPage < PagesCount)
+            {
+                NumberOfPage++;
+                TBCurrentPage.Text = (NumberOfPage + 1).ToString();
+                CheckPages();
+                UpdateShop();
+            }
+        }
+
+        private void CheckPages()
+        {
+            if (NumberOfPage > 0)
+            {
+                TBPrevPage.Text = (NumberOfPage).ToString();
+                TBPrevPage.Visibility = Visibility.Visible;
+                BtnPagePrev.BorderBrush = Brushes.Yellow;
+            }
+            else
+            {
+                TBPrevPage.Visibility = Visibility.Collapsed;
+                BtnPagePrev.BorderBrush = Brushes.LightGray;
+            }
+            if (NumberOfPage < PagesCount)
+            {
+                TBNextPage.Text = (NumberOfPage + 2).ToString();
+                TBNextPage.Visibility = Visibility.Visible;
+                BtnPageNext.BorderBrush = Brushes.Yellow;
+            }
+            else
+            {
+                TBNextPage.Visibility = Visibility.Collapsed;
+                BtnPageNext.BorderBrush = Brushes.LightGray;
+            }
         }
     }
 }

@@ -11,10 +11,7 @@ namespace WpfApp2.Model
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows.Automation.Peers;
-    using System.Windows.Controls;
-
+    
     public partial class TaskBanks
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,7 +26,6 @@ namespace WpfApp2.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TasksIBanks> TasksIBanks { get; set; }
 
-        public List<TaskNames> TaskList { get; set;}
-
+        public List<TaskNames> TaskList { get; set; }
     }
 }

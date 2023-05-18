@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -91,14 +92,19 @@ namespace WpfApp2.Views
             {
                 try
                 {
+                    foreach (var task in tasksForRemoving)
+                    {
+                        if (task.WordVersion != null)
+                            File.Delete(task.WordVersion);
+                    }
                     AppData.db.TaskNames.RemoveRange((IEnumerable<TaskNames>)tasksForRemoving);
                     AppData.db.SaveChanges();
                     MessageBox.Show("Данные удалены!");
-                    LViewTasks.ItemsSource = AppData.db.TaskNames.ToList();
+                    AppData.MainFrame.Navigate(new ShopPage());
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message.ToString());
+                    MessageBox.Show(ex.Message.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -112,10 +118,13 @@ namespace WpfApp2.Views
         {
             if (((sender as Button).DataContext as TaskNames).WordVersion != null)
             {
-                Process wordProcess = new Process();
-                wordProcess.StartInfo.FileName = ((sender as Button).DataContext as TaskNames).WordVersion;
-                wordProcess.StartInfo.UseShellExecute = true;
-                wordProcess.Start();
+                if (File.Exists(((sender as Button).DataContext as TaskNames).WordVersion))
+                {
+                    Process wordProcess = new Process();
+                    wordProcess.StartInfo.FileName = ((sender as Button).DataContext as TaskNames).WordVersion;
+                    wordProcess.StartInfo.UseShellExecute = true;
+                    wordProcess.Start();
+                }
             }
             else
             {
@@ -245,6 +254,7 @@ namespace WpfApp2.Views
             {
                 NumberOfPage--;
                 TBCurrentPage.Text = (NumberOfPage + 1).ToString();
+                CheckPages();
                 UpdateShop();
             }
         }
@@ -266,17 +276,23 @@ namespace WpfApp2.Views
             {
                 TBPrevPage.Text = (NumberOfPage).ToString();
                 TBPrevPage.Visibility = Visibility.Visible;
-            } else
+                BtnPagePrev.BorderBrush = Brushes.Yellow;
+            }
+            else
             {
                 TBPrevPage.Visibility = Visibility.Collapsed;
+                BtnPagePrev.BorderBrush = Brushes.LightGray;
             }
             if (NumberOfPage < PagesCount)
             {
-                TBNextPage.Text = (NumberOfPage+2).ToString();
+                TBNextPage.Text = (NumberOfPage + 2).ToString();
                 TBNextPage.Visibility = Visibility.Visible;
-            } else
+                BtnPageNext.BorderBrush = Brushes.Yellow;
+            }
+            else
             {
                 TBNextPage.Visibility = Visibility.Collapsed;
+                BtnPageNext.BorderBrush = Brushes.LightGray;
             }
         }
     }

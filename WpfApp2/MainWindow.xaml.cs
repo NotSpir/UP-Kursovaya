@@ -94,6 +94,7 @@ namespace WpfApp2
             MainWindow newWindow = new MainWindow();
             Application.Current.MainWindow.Close();
             Application.Current.MainWindow = newWindow;
+            AppData.MainFrame = newWindow.MainFrame;
             newWindow.Show();
             
             AppData.MainFrame.Navigate(new SignInPage());

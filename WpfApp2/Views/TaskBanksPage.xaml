@@ -18,7 +18,15 @@
                 <TextBlock Text="Введите название для поиска:" Width="175" TextAlignment="Right" Foreground="White" ></TextBlock>
                 <TextBox Width="225" Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" ></TextBox>
             </StackPanel>
-            
+
+            <StackPanel Grid.Row="0" Margin="0 15" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button BorderThickness="2px" Background="Black" BorderBrush="Yellow" Height="35" Width="50" Foreground="White" Content="←" FontSize="20" Name="BtnPagePrev" Click="BtnPagePrev_Click"/>
+                <TextBlock Name="TBPrevPage" Background="Black" Visibility="Collapsed" Foreground="Gray" Grid.Column="0"  Margin=" 10 0" Grid.Row="0" Text="1" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Name="TBCurrentPage" Background="Black" Foreground="White" Grid.Column="0"  Margin=" 10 0" Grid.Row="0" Text="1" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Name="TBNextPage" Background="Black" Visibility="Collapsed" Foreground="Gray" Grid.Column="0"  Margin=" 10 0" Grid.Row="0" Text="1" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
+                <Button BorderThickness="2px" Background="Black" BorderBrush="Yellow" Height="35" Width="50" Content="→" Foreground="White" FontSize="20" Name="BtnPageNext" Click="BtnPageNext_Click"/>
+            </StackPanel>
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="Black" Foreground="White" 
                         BorderBrush="Green" BorderThickness="2px" Visibility="Hidden" Margin="5 5 5 5"></Button>
@@ -28,7 +36,7 @@
             </StackPanel>
         </Grid>
         
-        <ListView Grid.Row="1" Name="LViewBanks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="#242424" Foreground="Black">
+        <ListView Grid.Row="1" Name="LViewBanks" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="Black" Foreground="Black">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
@@ -36,10 +44,10 @@
             </ListView.ItemsPanel>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="BorderBrush" Value="DeepSkyBlue" />
+                    <Setter Property="BorderBrush" Value="Blue" />
                     <Setter Property="BorderThickness" Value="0,2,0,2" />
                     <Setter Property="Width" Value="1000px" />
-                    <Setter Property="Background" Value="#cccccc" />
+                    <Setter Property="Background" Value="White" />
                     <EventSetter Event="MouseRightButtonUp" Handler="ListViewItem_MouseRightButtonUp" />
 
                 </Style>
@@ -57,10 +65,10 @@
                                    HorizontalAlignment="Center" Margin="5 5" FontSize="26" Grid.Row="0"></TextBlock>
 
                         <ListBox Grid.Row="1" Width="auto" HorizontalAlignment="Center" Name="LBTasks"
-                                        BorderBrush="ForestGreen" ItemsSource="{Binding TaskList}" BorderThickness="3px" Background="Black">
+                                        BorderBrush="Black" ItemsSource="{Binding TaskList}" BorderThickness="3px" Background="Black">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Background="Azure" Width="590" HorizontalAlignment="Center">
+                                    <Grid Background="White" Width="590" HorizontalAlignment="Center">
                                         <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Text="{Binding TaskName}" FontSize="14pt"></TextBlock>
                                     </Grid>
                                 </DataTemplate>

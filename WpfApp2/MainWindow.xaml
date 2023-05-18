@@ -37,6 +37,6 @@
         </Grid>
         <Grid Grid.Row="2" Background="Black" />
         <Button Name="GoBackButton" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Center" 
-                Height="35" Width="100" Margin="0 20 0 0" Click="GoBackButton_Click" Background="Black" Foreground="White" BorderBrush="Orange" BorderThickness="2px"/>
+                Height="35" Width="100" Margin="0 20 15 0" Click="GoBackButton_Click" Background="Black" Foreground="White" BorderBrush="Orange" BorderThickness="2px"/>
     </Grid>
 </Window>
