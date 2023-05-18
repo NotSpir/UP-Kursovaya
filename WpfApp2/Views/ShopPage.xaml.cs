@@ -156,9 +156,9 @@ namespace WpfApp2.Views
             Word.Paragraph oPara4;
             oPara4 = oDoc.Content.Paragraphs.Add();
             oPara4.Range.Text = textCompleteTime;
-            oPara3.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
+            oPara4.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
             oPara4.Range.Font.Bold = 1;
-            oPara3.Range.Font.Size = 14;
+            oPara4.Range.Font.Size = 14;
             oPara4.Format.SpaceAfter = 24;
             oPara4.Range.InsertParagraphAfter();
 
@@ -166,7 +166,7 @@ namespace WpfApp2.Views
             oPar = oDoc.Content.Paragraphs.Add(ref oMissing);
             oPar.Range.Text = "Краткое описание работы";
             oPar.Range.Font.Bold = 1;
-            oPara2.Range.Font.Italic = 0;
+            oPar.Range.Font.Italic = 0;
             oPar.Range.Font.Size = 24;
             oPar.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
             oPar.Format.SpaceAfter = 16;    //24 pt spacing after paragraph.
@@ -175,8 +175,8 @@ namespace WpfApp2.Views
             Word.Paragraph oPara5;
             oPara5 = oDoc.Content.Paragraphs.Add();
             oPara5.Range.Text = textTask;
-            oPara2.Range.Font.Size = 14;
-            oPar.Range.Font.Bold = 0;
+            oPara5.Range.Font.Size = 14;
+            oPara5.Range.Font.Bold = 0;
             oPara5.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
             oPara5.Format.SpaceAfter = 24;
             oPara5.Range.InsertParagraphAfter();
