@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Frame Background="#cccccc" Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentLoaded"/>
         <Grid Grid.Row="0"  Background="#242424">
-            <Menu FontSize="14px" Background="Black" Foreground="White" BorderBrush="White" BorderThickness="1px" Name="MainMenu" Margin="0,0,0,49">
+            <Menu Visibility="Collapsed" FontSize="14px" Background="Black" Foreground="White" BorderBrush="White" BorderThickness="1px" Name="MainMenu" Margin="0,0,0,49">
 
                 <MenuItem BorderBrush="White" BorderThickness="1px" Name="MenuPersonal" Header="Пользователь">
                     <MenuItem Foreground="Black" Name="MenuPersCabinet" Click="OpenPersonalCabinet" Header="Перейти в личный кабинет" />

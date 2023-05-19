@@ -37,6 +37,8 @@ namespace WpfApp2
                 AppData.CurrentUser = AppData.db.Users.Where(p => p.email == currentMail && p.Password == currentPassword)
                 .AsEnumerable()
                 .FirstOrDefault(p => p.email == currentMail && p.Password == currentPassword);
+
+                MainMenu.Visibility = Visibility.Visible;
                 if (AppData.CurrentUser.Position == 1)
                 {
                     MenuPersonal.Visibility = Visibility.Visible;
@@ -61,6 +63,7 @@ namespace WpfApp2
             {
                 MainFrame.Navigate(new SignInPage());
                 MenuPersonal.Visibility = Visibility.Hidden;
+                AppData.MainFrame = MainFrame;
                 return;
             }
             
