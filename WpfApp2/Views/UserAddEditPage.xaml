@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="UserAddEditPage">
 
-    <Grid Background="#242424">
+    <Grid Background="Black">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
             <TextBlock Foreground="White" Text="Имя" FontSize="16"/>
             <TextBox Text="{Binding FirstName}" FontSize="16" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox"/>

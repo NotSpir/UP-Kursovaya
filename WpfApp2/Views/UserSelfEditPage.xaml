@@ -25,6 +25,8 @@
 
             <Button Height="25" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"
                     Background="Black" Foreground="White" BorderBrush="Green" BorderThickness="2px"/>
+
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Margin="10" Name="TextValidError" Foreground="Red"></TextBlock>
         </StackPanel>
     </Grid>
 </Page>

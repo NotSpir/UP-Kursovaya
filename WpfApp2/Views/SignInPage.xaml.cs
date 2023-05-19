@@ -89,12 +89,14 @@ namespace WpfApp2.Views
 
         private void TextBoxPasting(object sender, DataObjectPastingEventArgs e)
         {
+            TextValidError.Text = "";
             if (e.DataObject.GetDataPresent(typeof(String)))
             {
                 String text = (String)e.DataObject.GetData(typeof(String));
                 if (!IsTextAllowed(text))
                 {
                     e.CancelCommand();
+                    TextValidError.Text = "Разрешены только символы английского алфавита, числа и @ и точка";
                 }
             }
             else
@@ -105,7 +107,10 @@ namespace WpfApp2.Views
 
         private void CharValidationTextBox(object sender, TextCompositionEventArgs e)
         {
+            TextValidError.Text = "";
             e.Handled = _regex.IsMatch(e.Text);
+            if (_regex.IsMatch(e.Text))
+                TextValidError.Text = "Разрешены только символы английского алфавита, числа и @ и точка";
         }
     }
 }

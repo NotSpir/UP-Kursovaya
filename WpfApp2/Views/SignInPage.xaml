@@ -20,5 +20,7 @@
             <Button Height="35" Margin="5" Content="Зарегистрироваться" Click="BtnRegister_Click" FontSize="13"
                     Background="Black" Foreground="White" BorderBrush="MediumPurple" BorderThickness="1px"/>
         </StackPanel>
+
+        <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Margin="10" Name="TextValidError" Foreground="Red"></TextBlock>
     </Grid>
 </Page>

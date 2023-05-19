@@ -25,6 +25,8 @@
 
             <Button Height="35" Margin="5" Content="Создать" Click="CreateBtn_Click" FontSize="13" Width="200" Background="Black" Foreground="White" BorderBrush="LightGreen" BorderThickness="2"/>
             <Button Height="35" Margin="5" Content="Есть учетная запись? Войти" Click="GoSingInBtn_Click" FontSize="13" Width="200" Background="Black" Foreground="White" BorderBrush="SkyBlue" BorderThickness="2"/>
+
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Margin="10" Name="TextValidError" Foreground="Red"></TextBlock>
         </StackPanel>
     </Grid>
 </Page>
