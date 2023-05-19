@@ -142,12 +142,14 @@ namespace WpfApp2.Views
 
         private void TextBoxNumsPasting(object sender, DataObjectPastingEventArgs e)
         {
+            TextValidError.Text = "";
             if (e.DataObject.GetDataPresent(typeof(String)))
             {
                 String text = (String)e.DataObject.GetData(typeof(String));
                 if (!IsTextAllowed(text))
                 {
                     e.CancelCommand();
+                    TextValidError.Text = "Для ввода времени разрешены только цифры";
                 }
             }
             else
@@ -158,7 +160,10 @@ namespace WpfApp2.Views
 
         private void CharValidationNumsTextBox(object sender, TextCompositionEventArgs e)
         {
+            TextValidError.Text = "";
             e.Handled = regexNums.IsMatch(e.Text);
+            if (regexNums.IsMatch(e.Text))
+                TextValidError.Text = "Для ввода времени разрешены только цифры";
         }
 
         private void TextBoxWordPasting(object sender, DataObjectPastingEventArgs e)

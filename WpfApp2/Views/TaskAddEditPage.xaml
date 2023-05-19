@@ -27,6 +27,8 @@
                         Background="Black" Foreground="White" BorderBrush="LightSkyBlue" BorderThickness="2px"/>
                 <Button Height="35" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"
                         Background="Black" Foreground="White" BorderBrush="Green" BorderThickness="2px"/>
+
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Margin="10" Name="TextValidError" Foreground="Red"></TextBlock>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" Grid.Column="1">
             <TextBlock Height="20" Width="450" Text="Описание" Foreground="White"></TextBlock>
