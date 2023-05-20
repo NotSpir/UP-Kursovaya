@@ -11,7 +11,6 @@ namespace WpfApp2.Model
     {
         public static Frame MainFrame { get; set; }
         public static TasksBanksEntities db = new TasksBanksEntities();
-        //public static InstrEntities dbold = new InstrEntities();
         public static Users CurrentUser = new Users();
     }
 }

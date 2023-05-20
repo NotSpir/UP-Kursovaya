@@ -8,12 +8,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DisciplineAddEditPage">
 
-    <Grid Background="White">
+    <Grid Background="Black">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
-            <TextBlock Text="Название дисциплины" FontSize="16"/>
+            <TextBlock Foreground="White" Text="Название дисциплины" FontSize="16"/>
             <TextBox Text="{Binding DisciplineName}" FontSize="16"/>
 
-            <Button Height="20" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"/>
+            <Button Background="Black" Foreground="White" BorderBrush="Green" BorderThickness="2px" Height="25" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"/>
         </StackPanel>
     </Grid>
 </Page>

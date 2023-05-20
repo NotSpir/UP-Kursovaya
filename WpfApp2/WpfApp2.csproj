@@ -162,8 +162,8 @@
     <Compile Include="Views\DisciplinePage.xaml.cs">
       <DependentUpon>DisciplinePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ShopPage.xaml.cs">
-      <DependentUpon>ShopPage.xaml</DependentUpon>
+    <Compile Include="Views\TaskSearchPage.xaml.cs">
+      <DependentUpon>TaskSearchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
@@ -214,7 +214,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ShopPage.xaml">
+    <Page Include="Views\TaskSearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

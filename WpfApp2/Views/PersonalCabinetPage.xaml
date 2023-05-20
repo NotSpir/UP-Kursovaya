@@ -44,7 +44,7 @@
                 </StackPanel>
             </Grid>
             
-            <Button Content="Добавить" Height="35" Name="BtnEdit" Click="BtnEdit_Click" Width="150" Background="Black" Foreground="White" 
+            <Button Content="Редактировать" Height="35" Name="BtnEdit" Click="BtnEdit_Click" Width="150" Background="Black" Foreground="White" 
                         BorderBrush="Green" BorderThickness="2px" Margin="0 300 0 0"></Button>
             
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column ="1">

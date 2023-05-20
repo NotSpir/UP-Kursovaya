@@ -46,7 +46,7 @@ namespace WpfApp2.Views
                 .AsEnumerable()
                 .FirstOrDefault(p => p.email == TxbMail.Text && p.Password == TxbPassword.Password);
 
-            if(AppData.CurrentUser != null)
+            if (AppData.CurrentUser != null)
             {
                 StreamWriter sr = new StreamWriter("..\\LoginData.txt");
                 File.WriteAllText(sr.ToString(), "");
@@ -62,11 +62,11 @@ namespace WpfApp2.Views
 
                 if (AppData.CurrentUser.Position == 1)
                 {
-                    NavigationService.Navigate(new ShopPage());
+                    NavigationService.Navigate(new TaskSearchPage());
                 }
                 else
                 {
-                    NavigationService.Navigate(new ShopPage());
+                    NavigationService.Navigate(new TaskSearchPage());
                 }
                 
             }

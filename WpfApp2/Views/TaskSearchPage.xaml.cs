@@ -24,14 +24,14 @@ namespace WpfApp2.Views
     /// <summary>
     /// Логика взаимодействия для ShopPage.xaml
     /// </summary>
-    public partial class ShopPage : Page
+    public partial class TaskSearchPage : Page
     {
         private int PagesCount;
         private int NumberOfPage = 0;
         private int maxItemShow = 5;
         List<TaskNames> currentTasks = AppData.db.TaskNames.ToList();
         Discipline discVal = new Discipline();
-        public ShopPage()
+        public TaskSearchPage()
         {
             InitializeComponent();
 
@@ -49,8 +49,8 @@ namespace WpfApp2.Views
                 BtnDelete.Visibility = Visibility.Visible;
                 BtnAdd.Visibility = Visibility.Visible;
             }
-
-            PagesCount = currentTasks.Count / maxItemShow;
+            
+            PagesCount = currentTasks.Count / maxItemShow;  
             CheckPages();
             LViewTasks.ItemsSource = currentTasks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
         }
@@ -100,7 +100,7 @@ namespace WpfApp2.Views
                     AppData.db.TaskNames.RemoveRange((IEnumerable<TaskNames>)tasksForRemoving);
                     AppData.db.SaveChanges();
                     MessageBox.Show("Данные удалены!");
-                    AppData.MainFrame.Navigate(new ShopPage());
+                    AppData.MainFrame.Navigate(new TaskSearchPage());
                 }
                 catch (Exception ex)
                 {
@@ -129,7 +129,7 @@ namespace WpfApp2.Views
 
                 else if ((MessageBox.Show("Документ, привязанный к данному заданию не найден. Сгенерировать документ автоматически?", "Ошибка", MessageBoxButton.YesNo, MessageBoxImage.Error)) == MessageBoxResult.No)
                     return;
-                
+            }
                     object oMissing = System.Reflection.Missing.Value;
                     object oEndOfDoc = "\\endofdoc"; // \endofdoc is a predefined bookmark 
 
@@ -209,7 +209,7 @@ namespace WpfApp2.Views
                     oPara5.Format.SpaceAfter = 24;
                     oPara5.Range.InsertParagraphAfter();
                 
-            }
+           
         }
 
         private void ListViewItem_MouseRightButtonUp(object sender, MouseButtonEventArgs e)

@@ -68,7 +68,7 @@ namespace WpfApp2
             }
             
             AppData.MainFrame = MainFrame;
-            AppData.MainFrame.Navigate(new ShopPage());
+            AppData.MainFrame.Navigate(new TaskSearchPage());
         }
 
         private void MainFrame_ContentLoaded(object sender, EventArgs e)
@@ -115,7 +115,7 @@ namespace WpfApp2
 
         private void CheckAllTasks(object sender, RoutedEventArgs e)
         {
-            AppData.MainFrame.Navigate(new ShopPage());
+            AppData.MainFrame.Navigate(new TaskSearchPage());
         }
 
         private void CheckAllTaskBases(object sender, RoutedEventArgs e)
@@ -130,7 +130,7 @@ namespace WpfApp2
 
         private void GoToMainPage(object sender, RoutedEventArgs e)
         {
-            AppData.MainFrame.Navigate(new ShopPage());
+            AppData.MainFrame.Navigate(new TaskSearchPage());
         }
     }
 }

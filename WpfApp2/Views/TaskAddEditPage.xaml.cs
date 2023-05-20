@@ -74,13 +74,16 @@ namespace WpfApp2.Views
                 tasks.DisciplineID = currentDisc.ID;
                 AppData.db.SaveChanges();
                 if (oldFile != null)
+                {
                     if (tasks.WordVersion != oldFile)
                     {
-                        File.Copy(newFile, tasks.WordVersion);
                         File.Delete(oldFile);
                     }
+                }
+                if (tasks.WordVersion != null && newFile != null)
+                    File.Copy(newFile, tasks.WordVersion);
                 MessageBox.Show("Данные сохранены");
-                AppData.MainFrame.Navigate(new ShopPage());
+                AppData.MainFrame.Navigate(new TaskSearchPage());
             }
             catch (Exception ex)
             {
