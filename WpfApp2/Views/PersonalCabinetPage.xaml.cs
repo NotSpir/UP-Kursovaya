@@ -25,12 +25,6 @@ namespace WpfApp2.Views
         public PersonalCabinetPage()
         {
             InitializeComponent();
-            TBName.Text = AppData.CurrentUser.FirstName;
-            TBSurname.Text = AppData.CurrentUser.Surname;
-            TBPatronymic.Text = AppData.CurrentUser.Patronymic;
-            TBMail.Text = AppData.CurrentUser.email;
-            TBPassword.Text = AppData.CurrentUser.Password;
-            TBRole.Text = AppData.CurrentUser.Positions.PositionName;
 
             if (AppData.CurrentUser.Position == 3)
             {
@@ -47,6 +41,21 @@ namespace WpfApp2.Views
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             AppData.MainFrame.Navigate(new UserSelfEditPage(AppData.CurrentUser));
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                AppData.db.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+
+                TBName.Text = AppData.CurrentUser.FirstName;
+                TBSurname.Text = AppData.CurrentUser.Surname;
+                TBPatronymic.Text = AppData.CurrentUser.Patronymic;
+                TBMail.Text = AppData.CurrentUser.email;
+                TBPassword.Text = AppData.CurrentUser.Password;
+                TBRole.Text = AppData.CurrentUser.Positions.PositionName;
+            }
         }
     }
 }

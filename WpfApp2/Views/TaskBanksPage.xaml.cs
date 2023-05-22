@@ -30,25 +30,6 @@ namespace WpfApp2.Views
         {
             InitializeComponent();
 
-            if (AppData.CurrentUser.Position == 1)
-            {
-                BtnDelete.Visibility = Visibility.Visible;
-                BtnAdd.Visibility = Visibility.Visible;
-            }
-
-            foreach (var item in currentBanks)
-            {
-                var newTask = new List<TaskNames>();
-                var taskL = AppData.db.TasksIBanks.ToList().Where(u => u.BankID == item.ID);
-                foreach (var item1 in taskL)
-                {
-                    newTask.Add(AppData.db.TaskNames.ToList().Where(u => u.ID == item1.TaskID).FirstOrDefault());
-                }
-                item.TaskList = newTask;
-            }
-            PagesCount = currentBanks.Count / maxItemShow;
-            CheckPages();
-            LViewBanks.ItemsSource = currentBanks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
         }
 
         private void BtnWord_Click(object sender, RoutedEventArgs e)
@@ -194,7 +175,7 @@ namespace WpfApp2.Views
 
         private void ListViewItem_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (AppData.CurrentUser.Position != 3 )
+            if (AppData.CurrentUser.Position == 1 || AppData.CurrentUser.Position == 2)
                 if (sender != null)
                     NavigationService.Navigate(new TaskBanksAddEditPage((sender as ListViewItem).DataContext as TaskBanks));
         }
@@ -246,5 +227,34 @@ namespace WpfApp2.Views
                 BtnPageNext.BorderBrush = Brushes.LightGray;
             }
         }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                AppData.db.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+
+                if (AppData.CurrentUser.Position == 1 || AppData.CurrentUser.Position == 2)
+                {
+                    BtnDelete.Visibility = Visibility.Visible;
+                    BtnAdd.Visibility = Visibility.Visible;
+                }
+
+                foreach (var item in currentBanks)
+                {
+                    var newTask = new List<TaskNames>();
+                    var taskL = AppData.db.TasksIBanks.ToList().Where(u => u.BankID == item.ID);
+                    foreach (var item1 in taskL)
+                    {
+                        newTask.Add(AppData.db.TaskNames.ToList().Where(u => u.ID == item1.TaskID).FirstOrDefault());
+                    }
+                    item.TaskList = newTask;
+                }
+                PagesCount = currentBanks.Count / maxItemShow;
+                CheckPages();
+                LViewBanks.ItemsSource = currentBanks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
+            }
+        }
+
     }
 }

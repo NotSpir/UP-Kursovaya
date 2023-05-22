@@ -112,5 +112,10 @@ namespace WpfApp2.Views
             if (_regex.IsMatch(e.Text))
                 TextValidError.Text = "Разрешены только символы английского алфавита, числа и @ и точка";
         }
+
+        private void TextBoxSpaceblock(object sender, KeyEventArgs e)
+        {
+            e.Handled = e.Key == Key.Space;
+        }
     }
 }

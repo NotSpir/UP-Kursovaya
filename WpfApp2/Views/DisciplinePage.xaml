@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApp2.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="DisciplinePage">
+      Title="DisciplinePage" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid Background="#242424" >

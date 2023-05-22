@@ -47,7 +47,7 @@ namespace WpfApp2
                 if (AppData.CurrentUser.Position == 2)
                 {
                     MenuPersonal.Visibility = Visibility.Visible;
-                    MenuEdit.Visibility = Visibility.Visible;
+                    MenuEdit.Visibility = Visibility.Collapsed;
                     AdminItem1.Visibility = Visibility.Collapsed;
                     AdminItem2.Visibility = Visibility.Collapsed;
                     AdminItem3.Visibility = Visibility.Collapsed;
@@ -86,6 +86,7 @@ namespace WpfApp2
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
+            DataContext = AppData.db;
             AppData.MainFrame.GoBack();
         }
 

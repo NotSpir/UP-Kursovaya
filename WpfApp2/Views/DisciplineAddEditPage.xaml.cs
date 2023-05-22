@@ -38,7 +38,6 @@ namespace WpfApp2.Views
             if (string.IsNullOrWhiteSpace(dataElement.DisciplineName))
                 errors.AppendLine("Укажите название");
 
-
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApp2.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TaskBanksPage">
+      Title="TaskBanksPage" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,9 +14,9 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Background="#242424" Height="80px">
-            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock Text="Введите название для поиска:" Width="175" TextAlignment="Right" Foreground="White" ></TextBlock>
-                <TextBox Width="225" Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" ></TextBox>
+            <StackPanel HorizontalAlignment="Left" Orientation="Vertical" Margin="10">
+                <TextBlock Text="Введите название для поиска:  " Width="175" Height="25" TextAlignment="Right" Foreground="White" VerticalAlignment="Center"></TextBlock>
+                <TextBox Width="300" Height="20" Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" VerticalAlignment="Center"></TextBox>
             </StackPanel>
 
             <StackPanel Grid.Row="0" Margin="0 15" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -28,9 +28,9 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="Black" Foreground="White" 
+                <Button Height="25px" Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="Black" Foreground="White" 
                         BorderBrush="Green" BorderThickness="2px" Visibility="Hidden" Margin="5 5 5 5"></Button>
-                <Button Content="Удалить" Name="BtnDelete" Click="BtnDelete_Click" Width="100px" Foreground="White" 
+                <Button Height="25px" Content="Удалить" Name="BtnDelete" Click="BtnDelete_Click" Width="100px" Foreground="White" 
                         BorderThickness="2px" Background="Black" BorderBrush="Red" Visibility="Hidden" Margin="5 5 5 5" >
                 </Button>
             </StackPanel>

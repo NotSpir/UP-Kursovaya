@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApp2.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PersonalCabinetPage">
+      Title="PersonalCabinetPage" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid Background="#242424">
         <Grid.RowDefinitions>

@@ -48,10 +48,16 @@ namespace WpfApp2.Views
                 errors.AppendLine("Укажите отчество");
             if (string.IsNullOrWhiteSpace(people.email))
                 errors.AppendLine("Укажите почту");
-            if (string.IsNullOrWhiteSpace(people.Password))
+            if (!people.email.Contains('@'))
+                errors.AppendLine("Укажите настоящую почту!");
+            if (string.IsNullOrWhiteSpace(PassBox.Password))
                 errors.AppendLine("Укажите пароль");
-            if (ComboRoles.SelectedItem == null)
-                errors.AppendLine("Укажите уровень доступа");
+            else if (!IsCorrectPassword(PassBox.Password))
+                errors.AppendLine("Пароль должен быть длинной минимум 8 символов и содержать минимум 1 заглавную букву, 1 строчную и 1 цифру");
+            else if (string.IsNullOrWhiteSpace(PassRepeatBox.Password))
+                errors.AppendLine("Повторите пароль");
+            else if (PassBox.Password != PassRepeatBox.Password)
+                errors.AppendLine("Пароли не совпадают!");
             if (DPDateDel == null)
                 errors.AppendLine("Укажите дату рождения");
 
@@ -140,6 +146,18 @@ namespace WpfApp2.Views
             e.Handled = regexRu.IsMatch(e.Text);
             if (regexRu.IsMatch(e.Text))
                 TextValidError.Text = "Разрешены только русские символы";
+        }
+
+        private void TextBoxSpaceblock(object sender, KeyEventArgs e)
+        {
+            e.Handled = e.Key == Key.Space;
+        }
+
+        private bool IsCorrectPassword(string text)
+        {
+            if ((new Regex("[A-Z]+")).IsMatch(text) && (new Regex("[a-z]+")).IsMatch(text) && (new Regex("[0-9]+")).IsMatch(text) && text.Length >= 8)
+                return true;
+            return false;
         }
         //Конец функций для проверок ввода
     }

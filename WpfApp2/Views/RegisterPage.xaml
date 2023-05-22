@@ -9,19 +9,21 @@
       Title="RegisterPage">
 
     <Grid Background="Black">
-        <StackPanel Height="400" Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="300">
-            <TextBlock Text="Имя" FontSize="16" Width="200" Foreground="White"/>
-            <TextBox Text="{Binding FirstName}" FontSize="16" Width="200" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox"/>
-            <TextBlock Text="Фамилия" FontSize="16" Width="200" Foreground="White"/>
-            <TextBox Text="{Binding Surname}" FontSize="16" Width="200" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox"/>
-            <TextBlock Text="Отчество" FontSize="16" Width="200" Foreground="White"/>
-            <TextBox Text="{Binding Patronymic}" FontSize="16" Width="200" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox"/>
-            <TextBlock Text="Почта" FontSize="16" Width="200" Foreground="White"/>
-            <TextBox Text="{Binding email}" FontSize="16" Width="200" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox"/>
-            <TextBlock Text="Дата рождения" FontSize="16" Width="200" Foreground="White"/>
-            <DatePicker Name="DPDateDel" DisplayDate="{Binding Birthdate}" Width="200"></DatePicker>
-            <TextBlock Text="Пароль" FontSize="16" Width="200" Foreground="White"/>
-            <TextBox Text="{Binding Password}" FontSize="16" Width="200" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox"/>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="210">
+            <TextBlock Foreground="White" Text="Имя" FontSize="16"/>
+            <TextBox Width="200" Text="{Binding FirstName}" FontSize="16" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox" PreviewKeyDown="TextBoxSpaceblock"/>
+            <TextBlock Foreground="White" Text="Фамилия" FontSize="16"/>
+            <TextBox Width="200" Text="{Binding Surname}" FontSize="16" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox" PreviewKeyDown="TextBoxSpaceblock"/>
+            <TextBlock Foreground="White" Text="Отчество" FontSize="16"/>
+            <TextBox Width="200" Text="{Binding Patronymic}" FontSize="16" DataObject.Pasting="TextBoxRuPasting" PreviewTextInput="CharValidationRuTextBox" PreviewKeyDown="TextBoxSpaceblock"/>
+            <TextBlock Foreground="White" Text="Дата рождения" FontSize="16" />
+            <DatePicker Width="200" Name="DPDateDel" SelectedDate="{Binding Birthdate}"></DatePicker>
+            <TextBlock Foreground="White" Text="Почта" FontSize="16"/>
+            <TextBox Width="200" Text="{Binding email}" FontSize="16" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox" PreviewKeyDown="TextBoxSpaceblock"/>
+            <TextBlock Foreground="White" Text="Пароль" FontSize="16"/>
+            <PasswordBox Name="PassBox" Width="200" FontSize="16" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox" PreviewKeyDown="TextBoxSpaceblock"/>
+            <TextBlock Foreground="White" Text="Повторите пароль" FontSize="16"/>
+            <PasswordBox Name="PassRepeatBox" Width="200" FontSize="16" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox" PreviewKeyDown="TextBoxSpaceblock"/>
 
             <Button Height="35" Margin="5" Content="Создать" Click="CreateBtn_Click" FontSize="13" Width="200" Background="Black" Foreground="White" BorderBrush="LightGreen" BorderThickness="2"/>
             <Button Height="35" Margin="5" Content="Есть учетная запись? Войти" Click="GoSingInBtn_Click" FontSize="13" Width="200" Background="Black" Foreground="White" BorderBrush="SkyBlue" BorderThickness="2"/>

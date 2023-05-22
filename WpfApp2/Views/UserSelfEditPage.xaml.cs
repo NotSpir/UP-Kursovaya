@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp2.Model;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WpfApp2.Views
 {
@@ -36,7 +37,7 @@ namespace WpfApp2.Views
         }
 
         //Начало функций для проверок ввода
-        private static readonly Regex _regex = new Regex("[^0-9@A-Z.a-z]+");
+        private static readonly Regex _regex = new Regex("[0-9@A-Z.a-z]+");
         private static readonly Regex regexRu = new Regex("[^А-Яа-я]+");
         private static bool IsTextAllowed(string text)
         {
@@ -64,8 +65,8 @@ namespace WpfApp2.Views
         private void CharValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             TextValidError.Text = "";
-            e.Handled = _regex.IsMatch(e.Text);
-            if (_regex.IsMatch(e.Text))
+            e.Handled = !_regex.IsMatch(e.Text);
+            if (!_regex.IsMatch(e.Text))
                 TextValidError.Text = "Разрешены только символы английского алфавита, числа и @ и точка";
         }
 
@@ -109,8 +110,14 @@ namespace WpfApp2.Views
                 errors.AppendLine("Укажите почту");
             if (!people.email.Contains('@'))
                 errors.AppendLine("Укажите настоящую почту!");
-            if (string.IsNullOrWhiteSpace(people.Password))
+            if (string.IsNullOrWhiteSpace(PassBox.Password))
                 errors.AppendLine("Укажите пароль");
+            else if (!IsCorrectPassword(PassBox.Password))
+                errors.AppendLine("Пароль должен быть длинной минимум 8 символов и содержать минимум 1 заглавную букву, 1 строчную и 1 цифру");
+            else if (string.IsNullOrWhiteSpace(PassRepeatBox.Password))
+                errors.AppendLine("Повторите пароль");
+            else if (PassBox.Password != PassRepeatBox.Password)
+                errors.AppendLine("Пароли не совпадают!");
             if (DPDateDel == null)
                 errors.AppendLine("Укажите дату рождения");
 
@@ -129,6 +136,7 @@ namespace WpfApp2.Views
             }
             try
             {
+                people.Password = PassBox.Password;
                 AppData.db.SaveChanges();
                 MessageBox.Show("Данные сохранены");
                 NavigationService.GoBack(); 
@@ -139,6 +147,16 @@ namespace WpfApp2.Views
             }
         }
 
-        
+        private void TextBoxSpaceblock(object sender, KeyEventArgs e)
+        {
+            e.Handled = e.Key == Key.Space;
+        }
+
+        private bool IsCorrectPassword(string text)
+        {
+            if ((new Regex("[A-Z]+")).IsMatch(text) && (new Regex("[a-z]+")).IsMatch(text) && (new Regex("[0-9]+")).IsMatch(text) && text.Length >= 8)
+                return true;
+            return false;
+        }
     }
 }

@@ -24,7 +24,6 @@ namespace WpfApp2.Views
         public DisciplinePage()
         {
             InitializeComponent();
-            DGridMenu.ItemsSource = AppData.db.Discipline.ToList();
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)

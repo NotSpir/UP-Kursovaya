@@ -34,25 +34,6 @@ namespace WpfApp2.Views
         public TaskSearchPage()
         {
             InitializeComponent();
-
-            var allTypes = AppData.db.Discipline.ToList();
-            allTypes.Insert(0, new Discipline
-            {
-                DisciplineName = "Любая дисциплина"
-            });
-
-            LBDisciplines.ItemsSource = allTypes;
-            LBDisciplines.SelectedIndex = 0;
-
-            if (AppData.CurrentUser.Position == 1)
-            {
-                BtnDelete.Visibility = Visibility.Visible;
-                BtnAdd.Visibility = Visibility.Visible;
-            }
-            
-            PagesCount = currentTasks.Count / maxItemShow;  
-            CheckPages();
-            LViewTasks.ItemsSource = currentTasks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
         }
         private void UpdateShop()
         {
@@ -214,8 +195,8 @@ namespace WpfApp2.Views
 
         private void ListViewItem_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (AppData.CurrentUser.Position == 1)
-            if (sender != null)
+            if (AppData.CurrentUser.Position == 1 || AppData.CurrentUser.Position == 2)
+                if (sender != null)
                 NavigationService.Navigate(new TaskAddEditPage((sender as ListViewItem).DataContext as TaskNames));
         }
 
@@ -296,6 +277,34 @@ namespace WpfApp2.Views
             {
                 TBNextPage.Visibility = Visibility.Collapsed;
                 BtnPageNext.BorderBrush = Brushes.LightGray;
+            }
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                AppData.db.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+
+
+                var allTypes = AppData.db.Discipline.ToList();
+                allTypes.Insert(0, new Discipline
+                {
+                    DisciplineName = "Любая дисциплина"
+                });
+
+                LBDisciplines.ItemsSource = allTypes;
+                LBDisciplines.SelectedIndex = 0;
+
+                if (AppData.CurrentUser.Position == 1 || AppData.CurrentUser.Position == 2)
+                {
+                    BtnDelete.Visibility = Visibility.Visible;
+                    BtnAdd.Visibility = Visibility.Visible;
+                }
+
+                PagesCount = currentTasks.Count / maxItemShow;
+                CheckPages();
+                LViewTasks.ItemsSource = currentTasks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
             }
         }
     }

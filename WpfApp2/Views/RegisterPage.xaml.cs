@@ -32,7 +32,7 @@ namespace WpfApp2.Views
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(people.FirstName))
+             if (string.IsNullOrWhiteSpace(people.FirstName))
                 errors.AppendLine("Укажите имя");
             if (string.IsNullOrWhiteSpace(people.Surname))
                 errors.AppendLine("Укажите фамилию");
@@ -40,8 +40,18 @@ namespace WpfApp2.Views
                 errors.AppendLine("Укажите отчество");
             if (string.IsNullOrWhiteSpace(people.email))
                 errors.AppendLine("Укажите почту");
-            if (string.IsNullOrWhiteSpace(people.Password))
-                errors.AppendLine("Укажите пароль");  
+            if (!people.email.Contains('@'))
+                errors.AppendLine("Укажите настоящую почту!");
+            if (string.IsNullOrWhiteSpace(PassBox.Password))
+                errors.AppendLine("Укажите пароль");
+            else if (!IsCorrectPassword(PassBox.Password))
+                errors.AppendLine("Пароль должен быть длинной минимум 8 символов и содержать минимум 1 заглавную букву, 1 строчную и 1 цифру");
+            else if (string.IsNullOrWhiteSpace(PassRepeatBox.Password))
+                errors.AppendLine("Повторите пароль");
+            else if (PassBox.Password != PassRepeatBox.Password)
+                errors.AppendLine("Пароли не совпадают!");
+            if (DPDateDel == null)
+                errors.AppendLine("Укажите дату рождения");
 
             var repeatEmail = AppData.db.Users.FirstOrDefault(u => u.email == people.email);
             if (repeatEmail != null)
@@ -52,17 +62,21 @@ namespace WpfApp2.Views
                 MessageBox.Show(errors.ToString());
                 return;
             }
-
+            var currentAccess = 3;
             if (people.ID == 0)
-                people.Position = 3;
+            {
+                people.Position = currentAccess;
                 AppData.db.Users.Add(people);
-            try 
-            { 
+            }
+            try
+            {
+                people.Password = PassBox.Password;
+                people.Position = currentAccess;
                 AppData.db.SaveChanges();
                 MessageBox.Show("Вы успешно зарегистрировались!");
                 NavigationService.GoBack();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
@@ -130,6 +144,18 @@ namespace WpfApp2.Views
             e.Handled = regexRu.IsMatch(e.Text);
             if (regexRu.IsMatch(e.Text))
                 TextValidError.Text = "Разрешены только русские символы";
+        }
+
+        private void TextBoxSpaceblock(object sender, KeyEventArgs e)
+        {
+            e.Handled = e.Key == Key.Space;
+        }
+
+        private bool IsCorrectPassword(string text)
+        {
+            if ((new Regex("[A-Z]+")).IsMatch(text) && (new Regex("[a-z]+")).IsMatch(text) && (new Regex("[0-9]+")).IsMatch(text) && text.Length >= 8)
+                return true;
+            return false;
         }
         //Конец функций для проверок ввода
     }

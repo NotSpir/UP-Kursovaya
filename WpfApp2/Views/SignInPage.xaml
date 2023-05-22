@@ -11,9 +11,9 @@
     <Grid Background="Black">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
             <TextBlock Foreground="White" Text="Почта" FontSize="16"/>
-            <TextBox Name="TxbMail" FontSize="16" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox"/>
+            <TextBox Name="TxbMail" FontSize="16" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox" PreviewKeyDown="TextBoxSpaceblock"/>
             <TextBlock Foreground="White" Text="Пароль" FontSize="16"/>
-            <PasswordBox Name="TxbPassword" FontSize="16" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox"/>
+            <PasswordBox Name="TxbPassword" FontSize="16" DataObject.Pasting="TextBoxPasting" PreviewTextInput="CharValidationTextBox" PreviewKeyDown="TextBoxSpaceblock"/>
             
             <Button Height="35" Margin="5" Content="Войти" Click="BtnSignIn_Click" FontSize="13"
                     Background="Black" Foreground="White" BorderBrush="Azure" BorderThickness="1px"/>
