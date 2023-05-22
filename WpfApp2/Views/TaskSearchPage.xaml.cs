@@ -45,7 +45,7 @@ namespace WpfApp2.Views
 
             //LViewTasks.ItemsSource = currentServices.OrderBy(p => p.Price).ToList();
 
-            PagesCount = currentTasks.Count / maxItemShow;
+            PagesCount = Convert.ToInt16(Math.Floor(((double)currentTasks.Count / maxItemShow)-0.0000001));
             CheckPages();
             LViewTasks.ItemsSource = currentTasks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
         }
@@ -302,7 +302,7 @@ namespace WpfApp2.Views
                     BtnAdd.Visibility = Visibility.Visible;
                 }
 
-                PagesCount = currentTasks.Count / maxItemShow;
+                PagesCount = Convert.ToInt16(Math.Floor(((double)currentTasks.Count / maxItemShow) - 0.0000001));
                 CheckPages();
                 LViewTasks.ItemsSource = currentTasks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
             }

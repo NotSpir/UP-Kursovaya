@@ -193,7 +193,7 @@ namespace WpfApp2.Views
 
             //LViewTasks.ItemsSource = currentServices.OrderBy(p => p.Price).ToList();
 
-            PagesCount = (currentBanks.Count) / maxItemShow;
+            PagesCount = Convert.ToInt16(Math.Floor(((double)currentBanks.Count / maxItemShow) - 0.0000001));
             CheckPages();
             LViewBanks.ItemsSource = currentBanks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
 
@@ -276,7 +276,7 @@ namespace WpfApp2.Views
                     }
                     item.TaskList = newTask;
                 }
-                PagesCount = currentBanks.Count / maxItemShow;
+                PagesCount = Convert.ToInt16(Math.Floor(((double)currentBanks.Count / maxItemShow) - 0.0000001));
                 CheckPages();
                 LViewBanks.ItemsSource = currentBanks.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
             }

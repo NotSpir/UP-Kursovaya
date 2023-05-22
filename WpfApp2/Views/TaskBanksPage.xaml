@@ -28,9 +28,9 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Height="25px" Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="Black" Foreground="White" 
+                <Button Height="35px" Content="Добавить" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="Black" Foreground="White" 
                         BorderBrush="Green" BorderThickness="2px" Visibility="Hidden" Margin="5 5 5 5"></Button>
-                <Button Height="25px" Content="Удалить" Name="BtnDelete" Click="BtnDelete_Click" Width="100px" Foreground="White" 
+                <Button Height="35px" Content="Удалить" Name="BtnDelete" Click="BtnDelete_Click" Width="100px" Foreground="White" 
                         BorderThickness="2px" Background="Black" BorderBrush="Red" Visibility="Hidden" Margin="5 5 5 5" >
                 </Button>
             </StackPanel>
