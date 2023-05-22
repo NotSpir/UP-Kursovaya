@@ -13,7 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Word = Microsoft.Office.Interop.Word;
+using System.IO;
 using WpfApp2.Model;
+using System.Runtime.InteropServices;
 
 namespace WpfApp2.Views
 {
@@ -62,6 +64,30 @@ namespace WpfApp2.Views
 
             foreach (var item in dataForWord.TaskList)
             {
+                if (item.WordVersion != null)
+                {
+                    if (File.Exists(item.WordVersion))
+                    {
+                        FileInfo f = new FileInfo(item.WordVersion);
+                        string fullFilePath = f.FullName;
+
+                        var sourceDoc = oWord.Documents.Open(fullFilePath);
+                        sourceDoc.ActiveWindow.Selection.WholeStory();
+                        sourceDoc.ActiveWindow.Selection.Copy();
+
+                        Word.Paragraph oPar0;
+                        oPar0 = oDoc.Content.Paragraphs.Add(ref oMissing);
+                        oPar0.Range.Paste();
+
+                        sourceDoc.Close();
+                        Marshal.ReleaseComObject(sourceDoc);
+
+                        
+                        oPar0.Range.InsertBreak();
+                        continue;
+
+                     }
+                }
                 string textName = item.TaskName;
                 var author = AppData.db.Users.ToList().Where(u => u.ID == item.Author).FirstOrDefault();
                 var discipline = AppData.db.Discipline.ToList().Where(u => u.ID == item.DisciplineID).FirstOrDefault();
